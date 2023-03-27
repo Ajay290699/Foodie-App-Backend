@@ -13,4 +13,6 @@ public interface IUserService {
     public User userLogin(String email, String password) throws UserDoesNotFoundException;
 
     public List<User> getAllUser();
+
+    public User updateUser(User user) throws UserDoesNotFoundException;
 }
