@@ -7,7 +7,10 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Address {
+public class UserDto {
+
+    private String firstName;
+    private String lastname;
     private String buildingName;
     private String streetName;
     private int flatNo;

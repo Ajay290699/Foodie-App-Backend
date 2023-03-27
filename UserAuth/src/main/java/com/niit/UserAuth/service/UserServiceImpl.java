@@ -1,6 +1,7 @@
 package com.niit.UserAuth.service;
 
 import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.exception.InvalidCredentialsException;
 import com.niit.UserAuth.exception.UserAlreadyExistException;
 import com.niit.UserAuth.exception.UserDoesNotFoundException;
 import com.niit.UserAuth.repository.UserRepository;
@@ -24,16 +25,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User userLogin(String email, String password) throws UserDoesNotFoundException {
+    public User loginCheck(String email, String password) throws InvalidCredentialsException {
         if (userRepository.findById(email).isPresent()) {
             User user = userRepository.findById(email).get();
             if (user.getPassword().equals(password)) {
                 return user;
             } else {
-                throw new UserDoesNotFoundException();
+                throw new InvalidCredentialsException();
             }
         } else {
-            throw new UserDoesNotFoundException();
+            throw new InvalidCredentialsException();
         }
     }
 
@@ -52,6 +53,7 @@ public class UserServiceImpl implements IUserService {
         temp.setLastname(user.getLastname());
         temp.setMobileNo(user.getMobileNo());
         temp.setPassword(user.getPassword());
+//        temp.setAddress(user.getAddress());
 //        temp.setAddress(user.setAddress(user.getAddress()));
         return userRepository.save(temp);
     }

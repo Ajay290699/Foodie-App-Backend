@@ -1,6 +1,7 @@
 package com.niit.UserAuth.service;
 
 import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.exception.InvalidCredentialsException;
 import com.niit.UserAuth.exception.UserAlreadyExistException;
 import com.niit.UserAuth.exception.UserDoesNotFoundException;
 
@@ -10,7 +11,7 @@ public interface IUserService {
 
     public User addUser(User user) throws UserAlreadyExistException;
 
-    public User userLogin(String email, String password) throws UserDoesNotFoundException;
+    public User loginCheck(String email, String password) throws InvalidCredentialsException;
 
     public List<User> getAllUser();
 
