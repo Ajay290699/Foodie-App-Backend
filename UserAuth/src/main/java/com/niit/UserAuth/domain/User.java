@@ -16,6 +16,4 @@ public class User {
     @Id
     private String email;
     private String password, role;
-    private long mobileNo;
-    private String status;
 }

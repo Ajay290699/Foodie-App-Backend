@@ -1,9 +1,11 @@
 package com.niit.UserAuth.service;
 
 import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.domain.UserDto;
+import com.niit.UserAuth.domain.UserSignUp;
 import com.niit.UserAuth.exception.InvalidCredentialsException;
 import com.niit.UserAuth.exception.UserAlreadyExistException;
-import com.niit.UserAuth.exception.UserDoesNotFoundException;
+import com.niit.UserAuth.proxy.UserProxy;
 import com.niit.UserAuth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,19 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserProxy userProxy;
+
     @Override
-    public User addUser(User user) throws UserAlreadyExistException {
-        if (userRepository.findById(user.getEmail()).isEmpty()) {
-            return userRepository.save(user);
+    public User userSignUp(UserSignUp userSignUp) throws UserAlreadyExistException {
+        if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
+            userProxy.sendDataToRestaurantService(new UserDto(userSignUp.getFirstName(), userSignUp.getLastName(), userSignUp.getEmail(),
+                    userSignUp.getBuildingName(), userSignUp.getStreetName(), userSignUp.getFlatNo(), userSignUp.getCity(), userSignUp.getState(),
+                    userSignUp.getPincode()));
+            User user = userRepository.save(new User(userSignUp.getEmail(), userSignUp.getPassword(), userSignUp.getRole()));
+            return user;
         }
-        return null;
+        throw new UserAlreadyExistException();
     }
 
     @Override
@@ -43,18 +52,17 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public User updateUser(User user) throws UserDoesNotFoundException {
-        if (userRepository.findById(user.getEmail()).isEmpty()) {
-            return null;
-        }
-        User temp = userRepository.findById(user.getEmail()).get();
-        temp.setFirstName(user.getFirstName());
-        temp.setLastname(user.getLastname());
-        temp.setMobileNo(user.getMobileNo());
-        temp.setPassword(user.getPassword());
+//    @Override
+//    public UserSignUp updateUser(UserSignUp userSignUp) throws UserDoesNotFoundException {
+//        if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
+//            throw new UserDoesNotFoundException();
+//        }
+//        temp.setFirstName(user.getFirstName());
+//        temp.setLastname(user.getLastname());
+//        temp.setMobileNo(user.getMobileNo());
+//        temp.setPassword(user.getPassword());
 //        temp.setAddress(user.getAddress());
 //        temp.setAddress(user.setAddress(user.getAddress()));
-        return userRepository.save(temp);
-    }
+//        return userRepository.save(temp);
+//    }
 }

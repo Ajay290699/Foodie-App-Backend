@@ -11,6 +11,7 @@ public class UserDto {
 
     private String firstName;
     private String lastname;
+    private String email;
     private String buildingName;
     private String streetName;
     private int flatNo;
