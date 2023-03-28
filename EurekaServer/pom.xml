@@ -11,7 +11,7 @@
 	<artifactId>EurekaServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EurekaServer</name>
-	<description>Service to watch all service&apos;s</description>
+	<description>Service to monitor all services</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.6</spring-cloud.version>
