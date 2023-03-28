@@ -1,9 +1,9 @@
 package com.niit.UserAuth.controller;
 
 import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.domain.UserSignUp;
 import com.niit.UserAuth.exception.InvalidCredentialsException;
 import com.niit.UserAuth.exception.UserAlreadyExistException;
-import com.niit.UserAuth.exception.UserDoesNotFoundException;
 import com.niit.UserAuth.service.IUserService;
 import com.niit.UserAuth.token.SecurityTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> addUser(@RequestBody User user) throws UserAlreadyExistException {
-        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
-    }
-
-    @PostMapping("/update")
-    public ResponseEntity<?> updateUser(@RequestBody User user) throws UserDoesNotFoundException {
-        return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+    public ResponseEntity<?> register(@RequestBody UserSignUp userSignUp) throws UserAlreadyExistException {
+        return new ResponseEntity<>(userService.userSignUp(userSignUp), HttpStatus.CREATED);
     }
 
     @PostMapping("/user")

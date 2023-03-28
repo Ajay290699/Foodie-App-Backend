@@ -52,17 +52,4 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findAll();
     }
 
-//    @Override
-//    public UserSignUp updateUser(UserSignUp userSignUp) throws UserDoesNotFoundException {
-//        if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
-//            throw new UserDoesNotFoundException();
-//        }
-//        temp.setFirstName(user.getFirstName());
-//        temp.setLastname(user.getLastname());
-//        temp.setMobileNo(user.getMobileNo());
-//        temp.setPassword(user.getPassword());
-//        temp.setAddress(user.getAddress());
-//        temp.setAddress(user.setAddress(user.getAddress()));
-//        return userRepository.save(temp);
-//    }
 }
