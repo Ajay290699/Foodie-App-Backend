@@ -22,6 +22,7 @@
 
   <modules>
     <module>UserAuth</module>
+    <module>UserService</module>
     <module>EurekaServer</module>
     <module>ApiGateWay</module>
   </modules>

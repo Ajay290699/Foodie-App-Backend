@@ -11,7 +11,8 @@ public class AppConfiguration {
     @Bean
     public RouteLocator getRoutes(RouteLocatorBuilder builder) {
         return builder.routes().route(p -> p.path
-                ("/app/v1/**").uri("lb://UserAuthService")).route(p -> p.path
-                ("/app/v2/**").uri("lb: //RestaurantService")).build();
+                // .route(p -> p.path
+                //                ("/app/v2/**").uri("lb: //RestaurantService")).
+                        ("/app/v1/**").uri("lb://UserAuthService")).build();
     }
 }

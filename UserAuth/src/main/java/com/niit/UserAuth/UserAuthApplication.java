@@ -12,4 +12,8 @@ public class UserAuthApplication {
 		SpringApplication.run(UserAuthApplication.class, args);
 	}
 
+//	@Bean
+//	public UserProxy bean(){
+//		return new UserProxy();
+//	}
 }

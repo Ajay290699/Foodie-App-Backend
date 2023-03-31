@@ -15,11 +15,17 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
+
     UserRepository userRepository;
 
-    @Autowired
+
     UserProxy userProxy;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, UserProxy userProxy) {
+        this.userRepository = userRepository;
+        this.userProxy = userProxy;
+    }
 
     @Override
     public User userSignUp(UserSignUp userSignUp) throws UserAlreadyExistException {
