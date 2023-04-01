@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "RestaurantService", url = "localhost:900")
+@FeignClient(name = "UserService", url = "localhost:9999")
 public interface UserProxy {
 
-    @PostMapping("restaurantService/addUser")
+    @PostMapping("userService/addUser")
     public ResponseEntity<?> sendDataToRestaurantService(@RequestBody UserDto userDto);
 }
