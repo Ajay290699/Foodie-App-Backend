@@ -26,6 +26,7 @@
     <module>EurekaServer</module>
     <module>restaurantAuth</module>
     <module>restaurant-service</module>
+    <module>MailService</module>
     <module>ApiGateWay</module>
   </modules>
 

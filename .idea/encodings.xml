@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/ApiGateWay/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MailService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserAuth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserAuth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
