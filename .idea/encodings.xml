@@ -3,15 +3,18 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/ApiGateWay/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MailNotificationService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MailService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RestaurantAuth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RestaurantAuth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/RestaurantService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserAuth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserAuth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UserService/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/UserService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UserService123/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/UserService123/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/restaurant-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/restaurant-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/restaurantAuth/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/restaurantAuth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

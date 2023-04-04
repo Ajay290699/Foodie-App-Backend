@@ -21,13 +21,13 @@
   </parent>
 
   <modules>
-    <module>UserAuth</module>
-    <module>UserService</module>
-    <module>EurekaServer</module>
-    <module>restaurantAuth</module>
-    <module>restaurant-service</module>
-    <module>MailService</module>
-    <module>ApiGateWay</module>
+      <module>UserAuth</module>
+      <module>UserService</module>
+      <module>RestaurantAuth</module>
+      <module>RestaurantService</module>
+      <module>EurekaServer</module>
+      <module>ApiGateWay</module>
+      <module>MailNotificationService</module>
   </modules>
 
   <dependencies>
