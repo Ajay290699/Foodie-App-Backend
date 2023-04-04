@@ -6,7 +6,9 @@ import com.niit.stackroute.restaurant.service.models.RestaurantOwner;
 import com.niit.stackroute.restaurant.service.repos.OwnerRepo;
 import com.niit.stackroute.restaurant.service.repos.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RestaurantImpl implements RestaurantService {
 
     @Autowired
