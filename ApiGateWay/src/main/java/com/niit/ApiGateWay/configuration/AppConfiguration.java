@@ -12,16 +12,16 @@ public class AppConfiguration {
     public RouteLocator getRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
-                        .path("/api/v1/**")
+                        .path("/app/v1/**")
                         .uri("lb://UserAuthService/*"))
                 .route(p -> p
-                        .path("/restaurantAuthService/**")
+                        .path("/owner-auth/**")
                         .uri("lb://restaurantAuthService/*"))
                 .route(p -> p
-                        .path("/restaurantService/**")
+                        .path("/restaurant-service/**")
                         .uri("lb://restaurantService/*"))
                 .route(p -> p
-                        .path("/UserService/**")
+                        .path("/foodieApp/userService/**")
                         .uri("lb://UserService/*"))
                 .build();
     }
