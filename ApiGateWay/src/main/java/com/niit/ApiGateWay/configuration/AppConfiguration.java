@@ -10,9 +10,19 @@ public class AppConfiguration {
 
     @Bean
     public RouteLocator getRoutes(RouteLocatorBuilder builder) {
-        return builder.routes().route(p -> p.path
-                // .route(p -> p.path
-                //                ("/app/v2/**").uri("lb: //RestaurantService")).
-                        ("/app/v1/**").uri("lb://UserAuthService")).build();
+        return builder.routes()
+                .route(p -> p
+                        .path("/api/v1/**")
+                        .uri("lb://UserAuthService/*"))
+                .route(p -> p
+                        .path("/restaurantAuthService/**")
+                        .uri("lb://restaurantAuthService/*"))
+                .route(p -> p
+                        .path("/restaurantService/**")
+                        .uri("lb://restaurantService/*"))
+                .route(p -> p
+                        .path("/UserService/**")
+                        .uri("lb://UserService/*"))
+                .build();
     }
 }
