@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@RestController  efc
-
+@RestController
 @RequestMapping("/foodieApp/userService")
 public class UserController {
 
