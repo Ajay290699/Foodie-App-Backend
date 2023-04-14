@@ -18,9 +18,12 @@ import java.util.Set;
 @Setter
 public class Restaurant {
 
+
+    //    private String restaurantId;
     @Id
-    private String restaurantId;
-    private String restaurantName, location;
+    private String restaurantName;
+
+    private String location;
     private Set<Dishes> dishesSet;
 
 

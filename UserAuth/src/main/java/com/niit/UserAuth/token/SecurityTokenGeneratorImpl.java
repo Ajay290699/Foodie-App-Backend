@@ -19,7 +19,7 @@ public class SecurityTokenGeneratorImpl implements SecurityTokenGenerator {
 
         Map<String, String> token = new HashMap<>();
         Map<String, Object> tokenData = new HashMap<>();
-        tokenData.put("emailId", user.getEmail());
+        tokenData.put("emailId", user.getEmailId());
 
         String jwtToken = Jwts.builder()
                 .setClaims(tokenData)

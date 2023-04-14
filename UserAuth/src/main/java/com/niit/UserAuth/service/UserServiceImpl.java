@@ -19,6 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class UserServiceImpl implements IUserService {
 
 
+    @Autowired
     UserRepository userRepository;
 
     @Autowired

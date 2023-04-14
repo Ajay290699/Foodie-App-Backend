@@ -12,10 +12,10 @@ public class UserDto {
 
     private String firstName;
     private String lastname;
-    private String email;
+    private String emailId;
     private String buildingName;
     private String streetName;
-    private int flatNo;
+    private int flatNO;
     private String city;
     private String state;
     private double pincode;
