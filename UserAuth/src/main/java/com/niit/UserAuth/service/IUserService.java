@@ -14,4 +14,8 @@ public interface IUserService {
     public User loginCheck(String email, String password) throws InvalidCredentialsException;
 
     public List<User> getAllUser();
+
+    public int generateOTP();
+
+    public int sendOTP(String email);
 }

@@ -30,6 +30,12 @@ public class UserController {
         this.securityTokenGenerator = securityTokenGenerator;
     }
 
+    @PostMapping("/otp")
+    public ResponseEntity<?> getOtp(@RequestBody String email) {
+        System.out.println(email);
+        return new ResponseEntity<>(userService.sendOTP(email), HttpStatus.OK);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserSignUp userSignUp) throws UserAlreadyExistException {
         return new ResponseEntity<>(userService.userSignUp(userSignUp), HttpStatus.CREATED);

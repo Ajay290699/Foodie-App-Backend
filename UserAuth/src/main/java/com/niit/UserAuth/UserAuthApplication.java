@@ -18,4 +18,9 @@ public class UserAuthApplication {
 //	public UserProxy bean(){
 //		return new UserProxy();
 //	}
+
+//	public int generateOTP() {
+//		int otp = ThreadLocalRandom.current().nextInt(1000,9999);
+//		return otp;
+//	}
 }
