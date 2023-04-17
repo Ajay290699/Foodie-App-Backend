@@ -23,7 +23,7 @@ public class User {
     private String state;
     private double pincode;
 
-//    saumya varaible's'
+    //    saumya varaible's'
 //    private String emailId;
 //    private String firstName, lastName, mobileNumber;
 //    private String buildingName;
@@ -32,6 +32,6 @@ public class User {
 //    private String city;
 //    private String state;
 //    private double pincode;
-//    private Address address;
-//    private Favourites favourites;
+    private Address address;
+    private Favourites favourites;
 }
