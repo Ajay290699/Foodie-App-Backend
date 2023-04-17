@@ -2,6 +2,7 @@ package com.niit.UserAuth.repository;
 
 import com.niit.UserAuth.domain.User;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,33 +23,26 @@ public class UserRepositoryTest {
     private User user;
 
     @BeforeEach
-    public void setUp() {
-        user = new User("ajay@gmail.com", "Pass@123");
+    void setUp() {
+        user = new User("ajay@gmail.com", "Ajay@123");
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         user = null;
     }
 
     @Test
-    public void userRegistration() {
+    void userRegistration() {
         userRepository.save(user);
         User user1 = userRepository.findById(user.getEmailId()).get();
-        assertNotNull(user1);
-        assertEquals(user.getEmailId(), user1.getEmailId());
+        Assertions.assertNotNull(user1);
+        Assertions.assertEquals(user.getEmailId(), user1.getEmailId());
     }
 
-    @Test
-    public void userRegistrationFailure() {
-        userRepository.save(user);
-        User user1 = userRepository.findById(user.getEmailId()).get();
-        assertNotNull(user1);
-        assertEquals(user, user1.getEmailId());
-    }
 
     @Test
-    public void userLogin() {
+    void userLogin() {
         User user1 = userRepository.findById(user.getEmailId()).get();
         assertNotNull(user1);
         assertEquals(user.getEmailId(), user1.getEmailId());
