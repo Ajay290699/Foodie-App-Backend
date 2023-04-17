@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    public User userSignUp(UserSignUp userSignUp) throws UserAlreadyExistException;
+    public User userRegistration(UserSignUp userSignUp) throws UserAlreadyExistException;
 
     public User loginCheck(String email, String password) throws InvalidCredentialsException;
 

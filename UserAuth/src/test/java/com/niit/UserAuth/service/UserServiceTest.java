@@ -3,12 +3,14 @@ package com.niit.UserAuth.service;
 import com.niit.UserAuth.domain.User;
 import com.niit.UserAuth.domain.UserSignUp;
 import com.niit.UserAuth.exception.InvalidCredentialsException;
+import com.niit.UserAuth.exception.UserAlreadyExistException;
 import com.niit.UserAuth.proxy.UserProxy;
 import com.niit.UserAuth.rabbitMQ.EmailDTO;
 import com.niit.UserAuth.rabbitMQ.MailProducer;
 import com.niit.UserAuth.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,8 +23,8 @@ import java.util.List;
 
 import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -35,7 +37,6 @@ public class UserServiceTest {
 
     @Mock
     private MailProducer mailProducer;
-
     @InjectMocks
     private UserServiceImpl userService;
 
@@ -68,12 +69,19 @@ public class UserServiceTest {
         userSignUp = null;
     }
 
-//    @Test
-//    void userRgistration() {
-//        when(userRepository.findById(user.getEmailId())).thenReturn(ofNullable(null));
-//    }
+    @Test
+    @DisplayName("User Registered")
+    void userRegistration() throws UserAlreadyExistException {
+        when(userRepository.findById(user.getEmailId())).thenReturn(ofNullable(null));
+        when(userProxy.sendDataToRestaurantService(any())).thenReturn(any());
+        when(userRepository.save(user)).thenReturn(user);
+        assertEquals(user, userService.userRegistration(userSignUp));
+        verify(userRepository, times(1)).save(any());
+        verify(userRepository, times(1)).findById(any());
+    }
 
     @Test
+    @DisplayName("User log in successfully")
     public void userLogInSuccess() throws InvalidCredentialsException {
         Mockito.when(userRepository.findById(user.getEmailId())).thenReturn(ofNullable(user));
         assertEquals(user, userService.loginCheck(user.getEmailId(), user.getPassword()));

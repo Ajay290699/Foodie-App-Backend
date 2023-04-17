@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User userSignUp(UserSignUp userSignUp) throws UserAlreadyExistException {
+    public User userRegistration(UserSignUp userSignUp) throws UserAlreadyExistException {
         if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
             userProxy.sendDataToRestaurantService(new UserDto(userSignUp.getFirstName(), userSignUp.getLastName(), userSignUp.getEmail(),
                     userSignUp.getBuildingName(), userSignUp.getStreetName(), userSignUp.getFlatNo(), userSignUp.getCity(), userSignUp.getState(),
