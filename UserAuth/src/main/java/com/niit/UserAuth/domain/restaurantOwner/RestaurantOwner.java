@@ -1,4 +1,4 @@
-package com.niit.RestaurantAuth.models;
+package com.niit.UserAuth.domain.restaurantOwner;
 
 
 import lombok.AllArgsConstructor;
@@ -15,10 +15,7 @@ import javax.persistence.Id;
 public class RestaurantOwner {
 
  @Id
- private String emailId;
+ private String email;
  private String ownerName;
  private String password;
-// private String role;
-
-
 }

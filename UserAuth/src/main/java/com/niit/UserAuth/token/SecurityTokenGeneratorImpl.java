@@ -1,6 +1,6 @@
 package com.niit.UserAuth.token;
 
-import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.domain.user.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
@@ -41,4 +41,5 @@ public class SecurityTokenGeneratorImpl implements SecurityTokenGenerator {
 //        map.put("message", "User Logged in successfully");
 //        return map;
     }
+
 }

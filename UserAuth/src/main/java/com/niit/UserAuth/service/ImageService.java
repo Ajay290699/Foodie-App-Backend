@@ -1,6 +1,6 @@
 package com.niit.UserAuth.service;
 
-import com.niit.UserAuth.domain.Image;
+import com.niit.UserAuth.domain.user.Image;
 import com.niit.UserAuth.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

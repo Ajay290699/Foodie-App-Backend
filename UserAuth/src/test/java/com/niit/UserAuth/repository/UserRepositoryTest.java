@@ -1,6 +1,6 @@
 package com.niit.UserAuth.repository;
 
-import com.niit.UserAuth.domain.User;
+import com.niit.UserAuth.domain.user.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

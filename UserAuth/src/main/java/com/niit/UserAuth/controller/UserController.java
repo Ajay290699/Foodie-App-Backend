@@ -1,7 +1,7 @@
 package com.niit.UserAuth.controller;
 
-import com.niit.UserAuth.domain.User;
-import com.niit.UserAuth.domain.UserSignUp;
+import com.niit.UserAuth.domain.user.User;
+import com.niit.UserAuth.domain.user.UserSignUp;
 import com.niit.UserAuth.exception.InvalidCredentialsException;
 import com.niit.UserAuth.exception.UserAlreadyExistException;
 import com.niit.UserAuth.service.IUserService;

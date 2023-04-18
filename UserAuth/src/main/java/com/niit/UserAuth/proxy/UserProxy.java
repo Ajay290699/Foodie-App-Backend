@@ -1,6 +1,6 @@
 package com.niit.UserAuth.proxy;
 
-import com.niit.UserAuth.domain.UserDto;
+import com.niit.UserAuth.domain.user.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
