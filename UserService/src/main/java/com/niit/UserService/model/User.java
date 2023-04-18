@@ -12,10 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User {
 
+
+    @Id
+    private String email;
     private String firstName;
     private String lastname;
-    @Id
-    private String emailId;
+    private String mobileNo;
     private String buildingName;
     private String streetName;
     private int flatNO;
@@ -32,6 +34,6 @@ public class User {
 //    private String city;
 //    private String state;
 //    private double pincode;
-    private Address address;
+//    private Address address;
     private Favourites favourites;
 }

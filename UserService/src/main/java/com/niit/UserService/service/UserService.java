@@ -1,6 +1,5 @@
 package com.niit.UserService.service;
 
-import com.niit.UserService.model.Address;
 import com.niit.UserService.model.User;
 
 import java.util.List;
@@ -21,13 +20,13 @@ public interface UserService {
 
     public Map<String, String> getUserFavouriteAllRestaurants(String emailId);
 
-    public Address getUserAddress(String emailId);
+//    public Address getUserAddress(String emailId);
 
     public Set<String> addCuisinesToUserFavourite(String emailId, String cuisine);
 
     public Map<String, String> addRestaurantToUserFavourite(String emailId, String restaurantName, String restaurantId);
 
-    public Address updateUserAddress(String emailId, String orderId, Address address);
+//    public Address updateUserAddress(String emailId, String orderId, Address address);
 
     //        public Address deleteAddressFromUser(String emailId,String buildingName);
     public Set<String> deleteCuisineFromUserFavourite(String emailId, String cuisineName);

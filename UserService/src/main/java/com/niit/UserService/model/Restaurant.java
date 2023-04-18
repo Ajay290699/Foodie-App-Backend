@@ -20,7 +20,7 @@ public class Restaurant {
     private String restaurantName;
     private String restaurantImage;
     private List<Cuisines> dishes;
-    private Address address;
+//    private Address address;
     private String emailId;
     private List<Order> orders;
 }

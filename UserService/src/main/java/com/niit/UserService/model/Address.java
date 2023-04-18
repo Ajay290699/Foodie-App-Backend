@@ -10,6 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document
 public class Address {
-    private String orderPlace, buildingName, flatNumber, streetName, city, state, pinCode;
+    private String orderPlace, buildingName, flatNo, streetName, city, state, pinCode;
 
 }

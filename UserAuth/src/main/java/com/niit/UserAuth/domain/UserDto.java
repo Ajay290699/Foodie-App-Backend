@@ -1,6 +1,7 @@
 package com.niit.UserAuth.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,9 +13,11 @@ public class UserDto {
 
     private String firstName;
     private String lastname;
-    private String emailId;
+    @Id
+    private String email;
     private String buildingName;
     private String streetName;
+    private String mobileNo;
     private int flatNO;
     private String city;
     private String state;

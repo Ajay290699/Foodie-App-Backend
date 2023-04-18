@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("login")
     public ResponseEntity<?> loginCheck(@RequestBody User user) throws InvalidCredentialsException {
-        User result = userService.loginCheck(user.getEmailId(), user.getPassword());
+        User result = userService.loginCheck(user.getEmail(), user.getPassword());
         if (result != null) {
             Map<String, String> map = securityTokenGenerator.tokenGenerator(result);
             return new ResponseEntity<>(map, HttpStatus.OK);

@@ -14,9 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Dishes {
 
     @Id
-    private String dishName;
-    private String type;
-    private int dishPrice;
+    private String dishName;  //veg-pizza
+    private String type;        //veg
+    private int dishPrice;      //50
 
 
 }

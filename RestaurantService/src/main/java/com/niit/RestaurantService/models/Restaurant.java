@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -21,14 +20,11 @@ public class Restaurant {
 
     //    private String restaurantId;
     @Id
-    private String restaurantName;
+    private String restaurantName;   //dominos
 
-    private String location;
-    private Set<Dishes> dishesSet;
+    private String location;        //pune
+    private Set<Dishes> dishesSet;  //veg,non-veg
 
-
-    public Restaurant() {
-        dishesSet = new HashSet<>();
-    }
+//    domino's, KFC, MCdonald's, Square pizza, darjeeling momo's,
 
 }

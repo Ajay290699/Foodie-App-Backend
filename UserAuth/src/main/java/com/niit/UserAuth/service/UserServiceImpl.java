@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService {
     public User userRegistration(UserSignUp userSignUp) throws UserAlreadyExistException {
         if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
             userProxy.sendDataToRestaurantService(new UserDto(userSignUp.getFirstName(), userSignUp.getLastName(), userSignUp.getEmail(),
-                    userSignUp.getBuildingName(), userSignUp.getStreetName(), userSignUp.getFlatNo(), userSignUp.getCity(), userSignUp.getState(),
+                    userSignUp.getBuildingName(), userSignUp.getStreetName(), userSignUp.getMobileNo(), userSignUp.getFlatNo(), userSignUp.getCity(), userSignUp.getState(),
                     userSignUp.getPincode()));
             User user = userRepository.save(new User(userSignUp.getEmail(), userSignUp.getPassword()));
             return user;

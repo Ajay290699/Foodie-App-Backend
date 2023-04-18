@@ -1,6 +1,5 @@
 package com.niit.UserService.service;
 
-import com.niit.UserService.model.Address;
 import com.niit.UserService.model.User;
 import com.niit.UserService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-        return userRepository.insert(user);
+        return userRepository.save(user);
     }
 
     @Override
@@ -42,10 +41,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(emailId).get().getFavourites().getRestaurants();
     }
 
-    @Override
-    public Address getUserAddress(String emailId) {
-        return userRepository.findById(emailId).get().getAddress();
-    }
+//    @Override
+//    public Address getUserAddress(String emailId) {
+//        return userRepository.findById(emailId).get().getAddress();
+//    }
 
 //    @Override
 //    public Address addUserAddress(String emailId, Address address) {
@@ -68,17 +67,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user).getFavourites().getRestaurants();
     }
 
-    @Override
-    public Address updateUserAddress(String emailId, String orderPlace, Address address) {
-        User user = userRepository.findById(emailId).get();
-        user.getAddress().setCity(address.getCity());
-        user.getAddress().setBuildingName(address.getBuildingName());
-        user.getAddress().setState(address.getState());
-        user.getAddress().setFlatNumber(address.getFlatNumber());
-        user.getAddress().setStreetName(address.getStreetName());
-        user.getAddress().setPinCode(address.getPinCode());
-        return userRepository.save(user).getAddress();
-    }
+//    @Override
+//    public Address updateUserAddress(String emailId, String orderPlace, Address address) {
+//        User user = userRepository.findById(emailId).get();
+//        user.getAddress().setCity(address.getCity());
+//        user.getAddress().setBuildingName(address.getBuildingName());
+//        user.getAddress().setState(address.getState());
+//        user.getAddress().setFlatNo(address.getFlatNo());
+//        user.getAddress().setStreetName(address.getStreetName());
+//        user.getAddress().setPinCode(address.getPinCode());
+//        return userRepository.save(user).getAddress();
+//    }
 
 
 //    @Override
