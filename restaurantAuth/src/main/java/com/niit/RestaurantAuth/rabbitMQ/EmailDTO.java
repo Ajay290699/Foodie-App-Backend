@@ -1,4 +1,4 @@
-package com.niit.UserAuth.domain.restaurantOwner;
+package com.niit.RestaurantAuth.rabbitMQ;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RestaurantOwnerDTO {
-    private String emailId, ownerName;
-
+public class EmailDTO {
+    private String reciever, messageBody, subject;
 }

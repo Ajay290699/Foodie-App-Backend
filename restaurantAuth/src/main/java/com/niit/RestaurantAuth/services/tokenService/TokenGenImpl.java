@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class TokenGenImpl implements TokenGenInt {
+public class TokenGenImpl implements SecurityTokenGeneratorRestaurant {
     @Override
     public Map<String, String> tokenGeneration(RestaurantOwner restaurantOwner) {
 
 
         Map<String, Object> tokenData = new HashMap<>();
 
-        tokenData.put("emailId", restaurantOwner.getEmailId());
+        tokenData.put("emailId", restaurantOwner.getEmail());
         tokenData.put("password", restaurantOwner.getPassword());
 
         Map<String, String> token = new HashMap<>();

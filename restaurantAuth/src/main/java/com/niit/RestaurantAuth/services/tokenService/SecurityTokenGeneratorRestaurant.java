@@ -4,7 +4,7 @@ import com.niit.RestaurantAuth.models.RestaurantOwner;
 
 import java.util.Map;
 
-public interface TokenGenInt {
+public interface SecurityTokenGeneratorRestaurant {
 
     public Map<String, String> tokenGeneration(RestaurantOwner restaurantOwner);
 }
