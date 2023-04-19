@@ -3,6 +3,7 @@ package com.niit.UserAuth.service;
 import com.niit.UserAuth.domain.user.User;
 import com.niit.UserAuth.domain.user.UserSignUp;
 import com.niit.UserAuth.exception.InvalidCredentialsException;
+import com.niit.UserAuth.exception.UserAlreadyExistException;
 import com.niit.UserAuth.proxy.UserProxy;
 import com.niit.UserAuth.rabbitMQ.EmailDTO;
 import com.niit.UserAuth.rabbitMQ.MailProducer;
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ import java.util.List;
 
 import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -67,9 +67,9 @@ public class UserServiceTest {
         userSignUp = null;
     }
 
-//    @Test
-//    @DisplayName("User Registered")
-//    void userRegistration() throws UserAlreadyExistException {
+    @Test
+    @DisplayName("User Registered")
+    void userRegistration() throws UserAlreadyExistException {
 //        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(null));
 //        when(userProxy.sendDataToRestaurantService(any())).thenReturn(any());
 //        when(userRepository.save(user)).thenReturn(user);
@@ -77,25 +77,33 @@ public class UserServiceTest {
 //        assertEquals(user, userService.userRegistration(userSignUp));
 //        verify(userRepository, times(1)).save(any());
 //        verify(userRepository, times(1)).findById(any());
-//    }
 
-//    @Test
-//    @DisplayName("Restaurant Owner Registered")
-//    void restaurantOwnerRegistration(){
-//        when(restaurantOwnerRepo.findById(restaurantOwner.getEmail())).thenReturn(ofNullable(null));
-//        when(ownerProxy.sendDataToService(any())).thenReturn(any());
-//        when(restaurantOwnerRepo.save(restaurantOwner)).thenReturn(restaurantOwner);
-//        doNothing().when(mailProducer).sendMailDtoToQueue(restaurantEmailDTO);
-//        assertEquals(restaurantOwner,restaurantService.signUpOwner(restaurantOwner));
-//        verify(restaurantOwnerRepo, times(1)).save(any());
-//        verify(restaurantOwnerRepo, times(1)).findById(any());
-//    }
+        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(null));
+        when(userProxy.sendDataToRestaurantService(any())).thenReturn(any());
+        when(userRepository.save(user)).thenReturn(user);
+        doNothing().when(mailProducer).sendMailDtoToQueue(emailDTO);
+        assertEquals(user, userService.userRegistration(userSignUp));
+        verify(userRepository, times(1)).save(any());
+        verify(userRepository, times(1)).findById(any());
+    }
+
+    @Test
+    void userRegistrationFailure() {
+        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(user));
+        assertThrows(UserAlreadyExistException.class, () -> userService.userRegistration(userSignUp));
+    }
 
     @Test
     @DisplayName("User log in successfully")
     public void userLogIn() throws InvalidCredentialsException {
-        Mockito.when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(user));
+        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(user));
         assertEquals(user, userService.loginCheck(user.getEmail(), user.getPassword()));
         verify(userRepository, times(2)).findById(user.getEmail());
+    }
+
+    @Test
+    void userLoginFailure() {
+        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(null));
+        assertThrows(InvalidCredentialsException.class, () -> userService.loginCheck(user.getEmail(), user.getPassword()));
     }
 }

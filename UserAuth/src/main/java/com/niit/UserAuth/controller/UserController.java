@@ -38,7 +38,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserSignUp userSignUp) throws UserAlreadyExistException {
-        return new ResponseEntity<>(userService.userRegistration(userSignUp), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.userRegistration(userSignUp), HttpStatus.OK);
     }
 
     @GetMapping("/user")
