@@ -7,7 +7,7 @@ import com.niit.RestaurantService.models.RestaurantOwner;
 
 public interface RestaurantService {
 
-    public abstract RestaurantOwner addRestaurant(Restaurant restaurant, String emailId) throws RestaurantAlreadyExistsException;
+    public abstract Restaurant addRestaurant(Restaurant restaurant) throws RestaurantAlreadyExistsException;
 
     public abstract Restaurant addDishesToRestaurant(Dishes dishes, String resturantName);
 

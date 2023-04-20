@@ -3,6 +3,7 @@ package com.niit.RestaurantService.controller;
 import com.niit.RestaurantService.exceptions.RestaurantAlreadyExistsException;
 import com.niit.RestaurantService.models.Dishes;
 import com.niit.RestaurantService.models.Restaurant;
+import com.niit.RestaurantService.models.RestaurantOwner;
 import com.niit.RestaurantService.repos.RestaurantRepo;
 import com.niit.RestaurantService.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,17 @@ public class RestaurantController {
 //        this.restaurantService=restaurantService;
 //    }
 
-//    @PostMapping("/add-owner")
-//    public ResponseEntity<?> addOwner(@RequestBody RestaurantOwner restaurantOwner) {
-//        return new ResponseEntity<>(restaurantService.addOwner(restaurantOwner), HttpStatus.OK);
-//    }
+    @PostMapping("/add-owner")
+    public ResponseEntity<?> addOwner(@RequestBody RestaurantOwner restaurantOwner) {
+        return new ResponseEntity<>(restaurantService.addOwner(restaurantOwner), HttpStatus.OK);
+    }
 
     @PostMapping("/add-restaurant")
     public ResponseEntity<?> addRestaurant(@RequestBody Restaurant restaurant, HttpServletRequest httpServletRequest) {
 
         try {
             String emailId = (String) httpServletRequest.getAttribute("owner-emailId");
-            return new ResponseEntity<>(restaurantService.addRestaurant(restaurant, emailId), HttpStatus.OK);
+            return new ResponseEntity<>(restaurantService.addRestaurant(restaurant), HttpStatus.OK);
         } catch (RestaurantAlreadyExistsException e) {
             throw new RuntimeException(e);
         }

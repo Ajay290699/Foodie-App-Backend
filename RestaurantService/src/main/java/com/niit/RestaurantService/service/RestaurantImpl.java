@@ -17,12 +17,12 @@ public class RestaurantImpl implements RestaurantService {
     private RestaurantRepo restaurantRepo;
 
     @Override
-    public RestaurantOwner addRestaurant(Restaurant restaurant, String emailId) {
-        RestaurantOwner owner = ownerRepo.findById(emailId).get();
-        owner.setRestaurant(restaurant);
-        restaurantRepo.save(restaurant);
-        return ownerRepo.save(owner);
-
+    public Restaurant addRestaurant(Restaurant restaurant) {
+//        RestaurantOwner owner = ownerRepo.findById(emailId).get();
+//        owner.setRestaurant(restaurant);
+//        restaurantRepo.save(restaurant);
+//        return ownerRepo.save(owner);
+        return restaurantRepo.save(restaurant);
     }
 
     @Override
