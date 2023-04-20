@@ -1,7 +1,6 @@
-package com.niit.UserService;
+package com.niit.UserService.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.niit.UserService.controller.UserController;
 import com.niit.UserService.model.CartItem;
 import com.niit.UserService.model.Favourites;
 import com.niit.UserService.model.FoodItems;
