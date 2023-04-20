@@ -3,7 +3,7 @@ package com.niit.RestaurantAuth.controller;
 import com.niit.RestaurantAuth.exception.EmailAlreadyRegistered;
 import com.niit.RestaurantAuth.exception.InvalidCredentialsException;
 import com.niit.RestaurantAuth.models.RestaurantOwner;
-import com.niit.RestaurantAuth.services.RestaurantAuthService;
+import com.niit.RestaurantAuth.services.RestaurantServiceImpl;
 import com.niit.RestaurantAuth.services.tokenService.SecurityTokenGeneratorRestaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestOwnerController {
 
-    @Autowired
-    private RestaurantAuthService restaurantAuthService;
+    private RestaurantServiceImpl restaurantAuthService;
 
-    @Autowired
+
     private SecurityTokenGeneratorRestaurant securityTokenGeneratorRestaurant;
 
     @Autowired
-    public RestOwnerController(RestaurantAuthService restaurantAuthService, SecurityTokenGeneratorRestaurant securityTokenGeneratorRestaurant) {
+    public RestOwnerController(RestaurantServiceImpl restaurantAuthService, SecurityTokenGeneratorRestaurant securityTokenGeneratorRestaurant) {
         this.restaurantAuthService = restaurantAuthService;
         this.securityTokenGeneratorRestaurant = securityTokenGeneratorRestaurant;
     }

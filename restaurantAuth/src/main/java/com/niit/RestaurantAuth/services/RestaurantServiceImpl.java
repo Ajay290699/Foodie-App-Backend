@@ -8,29 +8,28 @@ import com.niit.RestaurantAuth.models.proxy.OwnerProxy;
 import com.niit.RestaurantAuth.rabbitMQ.EmailDTO;
 import com.niit.RestaurantAuth.rabbitMQ.MailProducer;
 import com.niit.RestaurantAuth.repository.RestaurantOwnerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantAuthService {
 
-    @Autowired
+
     private RestaurantAuthService restaurantAuthService;
-    @Autowired
+
     private RestaurantOwnerRepo restaurantOwnerRepo;
-    @Autowired
+
     private OwnerProxy ownerProxy;
-    @Autowired
+
     private MailProducer mailProducer;
 
-    @Autowired
-    public RestaurantServiceImpl(RestaurantAuthService restaurantAuthService, RestaurantOwnerRepo restaurantOwnerRepo, OwnerProxy ownerProxy, MailProducer mailProducer) {
-        this.restaurantAuthService = restaurantAuthService;
-        this.restaurantOwnerRepo = restaurantOwnerRepo;
-        this.ownerProxy = ownerProxy;
-        this.mailProducer = mailProducer;
-    }
+//    @Autowired
+//    public RestaurantServiceImpl(RestaurantAuthService restaurantAuthService, RestaurantOwnerRepo restaurantOwnerRepo, OwnerProxy ownerProxy, MailProducer mailProducer) {
+//        this.restaurantAuthService = restaurantAuthService;
+//        this.restaurantOwnerRepo = restaurantOwnerRepo;
+//        this.ownerProxy = ownerProxy;
+//        this.mailProducer = mailProducer;
+//    }
 
     @Override
     public RestaurantOwner signUpOwner(RestaurantOwner restaurantOwner) throws EmailAlreadyRegistered {
@@ -45,7 +44,7 @@ public class RestaurantServiceImpl implements RestaurantAuthService {
 
     @Override
     public RestaurantOwner restaurantOwnerLogin(RestaurantOwner restaurantOwner) throws InvalidCredentialsException {
-        RestaurantOwner restaurantOwner1 = restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword());
+        RestaurantOwner restaurantOwner1 = restaurantOwnerRepo.findByEmailAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword());
         if (restaurantOwner1 == null) throw new InvalidCredentialsException();
         else return restaurantOwner1;
 //        if (restaurantOwnerRepo.findById(email).isPresent()) {
