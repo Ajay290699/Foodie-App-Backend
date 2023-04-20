@@ -42,10 +42,10 @@ public class RestaurantController {
     }
 
     @PostMapping("/add-dish")
-    public ResponseEntity<?> addDishes(@RequestBody Dishes dish, HttpServletRequest httpServletRequest) {
+    public ResponseEntity<?> addDishes(@RequestBody Dishes dish, String resturatName) {
         //String currEmailId=(String) httpServletRequest.getAttribute("user-emailId");
-        String ownerEmailId = (String) httpServletRequest.getAttribute("owner-emailId");
-        return new ResponseEntity<>(restaurantService.addDishesToRestaurant(dish, ownerEmailId), HttpStatus.OK);
+        //String ownerEmailId = (String) httpServletRequest.getAttribute("owner-emailId");
+        return new ResponseEntity<>(restaurantService.addDishesToRestaurant(dish, resturatName), HttpStatus.OK);
     }
 
 }

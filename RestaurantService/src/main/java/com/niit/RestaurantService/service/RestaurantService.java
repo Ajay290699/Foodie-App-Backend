@@ -9,7 +9,7 @@ public interface RestaurantService {
 
     public abstract RestaurantOwner addRestaurant(Restaurant restaurant, String emailId) throws RestaurantAlreadyExistsException;
 
-    public abstract RestaurantOwner addDishesToRestaurant(Dishes dishes, String emailId);
+    public abstract Restaurant addDishesToRestaurant(Dishes dishes, String resturantName);
 
     RestaurantOwner addOwner(RestaurantOwner restaurantOwner);
 
