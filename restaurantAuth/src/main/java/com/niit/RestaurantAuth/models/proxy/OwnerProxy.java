@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "restaurant-app", url = "localhost:5000")
+@FeignClient(name = "restaurantService", url = "localhost:5000")
 public interface OwnerProxy {
 
     @PostMapping("/restaurant-service/add-owner")

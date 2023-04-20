@@ -8,6 +8,7 @@ import com.niit.RestaurantAuth.models.proxy.OwnerProxy;
 import com.niit.RestaurantAuth.rabbitMQ.EmailDTO;
 import com.niit.RestaurantAuth.rabbitMQ.MailProducer;
 import com.niit.RestaurantAuth.repository.RestaurantOwnerRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,16 @@ import org.springframework.stereotype.Service;
 public class RestaurantServiceImpl implements RestaurantAuthService {
 
 
+    @Autowired
     private RestaurantAuthService restaurantAuthService;
 
+    @Autowired
     private RestaurantOwnerRepo restaurantOwnerRepo;
 
+    @Autowired
     private OwnerProxy ownerProxy;
 
+    @Autowired
     private MailProducer mailProducer;
 
 //    @Autowired
