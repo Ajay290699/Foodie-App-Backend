@@ -19,18 +19,19 @@ import java.util.concurrent.ThreadLocalRandom;
 public class UserServiceImpl implements IUserService {
 
 
-    @Autowired
+
     UserRepository userRepository;
 
-    @Autowired
+
     MailProducer mailProducer;
 
 
     UserProxy userProxy;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserProxy userProxy) {
+    public UserServiceImpl(UserRepository userRepository, MailProducer mailProducer, UserProxy userProxy) {
         this.userRepository = userRepository;
+        this.mailProducer = mailProducer;
         this.userProxy = userProxy;
     }
 

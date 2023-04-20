@@ -70,13 +70,6 @@ public class UserServiceTest {
     @Test
     @DisplayName("User Registered")
     void userRegistration() throws UserAlreadyExistException {
-//        when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(null));
-//        when(userProxy.sendDataToRestaurantService(any())).thenReturn(any());
-//        when(userRepository.save(user)).thenReturn(user);
-//        doNothing().when(mailProducer).sendMailDtoToQueue(emailDTO);
-//        assertEquals(user, userService.userRegistration(userSignUp));
-//        verify(userRepository, times(1)).save(any());
-//        verify(userRepository, times(1)).findById(any());
 
         when(userRepository.findById(user.getEmail())).thenReturn(ofNullable(null));
         when(userProxy.sendDataToRestaurantService(any())).thenReturn(any());
