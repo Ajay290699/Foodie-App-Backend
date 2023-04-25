@@ -38,10 +38,10 @@ public class RestaurantServiceImpl implements RestaurantAuthService {
 
     @Override
     public RestaurantOwner signUpOwner(RestaurantOwner restaurantOwner) throws EmailAlreadyRegistered {
-        if (restaurantOwnerRepo.findById(restaurantOwner.getEmail()).isPresent()) throw new EmailAlreadyRegistered();
-        RestaurantOwnerDTO restaurantOwnerDTO = new RestaurantOwnerDTO(restaurantOwner.getEmail(), restaurantOwner.getOwnerName());
+        if (restaurantOwnerRepo.findById(restaurantOwner.getEmailId()).isPresent()) throw new EmailAlreadyRegistered();
+        RestaurantOwnerDTO restaurantOwnerDTO = new RestaurantOwnerDTO(restaurantOwner.getEmailId(), restaurantOwner.getOwnerName());
         ResponseEntity<?> response = ownerProxy.sendDataToService(restaurantOwnerDTO);
-        mailProducer.sendMailDtoToQueue(new EmailDTO(restaurantOwner.getEmail(), "You Have Successfully Registered To Foodie-App...." +
+        mailProducer.sendMailDtoToQueue(new EmailDTO(restaurantOwner.getEmailId(), "You Have Successfully Registered To Foodie-App...." +
                 " \n Thank You For Using Our Services!!!", "RESTAURANT OWNER REGISTRATION SUCCESSFUL"));
 
         return restaurantOwnerRepo.save(restaurantOwner);
@@ -49,7 +49,7 @@ public class RestaurantServiceImpl implements RestaurantAuthService {
 
     @Override
     public RestaurantOwner restaurantOwnerLogin(RestaurantOwner restaurantOwner) throws InvalidCredentialsException {
-        RestaurantOwner restaurantOwner1 = restaurantOwnerRepo.findByEmailAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword());
+        RestaurantOwner restaurantOwner1 = restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmailId(), restaurantOwner.getPassword());
         if (restaurantOwner1 == null) throw new InvalidCredentialsException();
         else return restaurantOwner1;
 //        if (restaurantOwnerRepo.findById(email).isPresent()) {

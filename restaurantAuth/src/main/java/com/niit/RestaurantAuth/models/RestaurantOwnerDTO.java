@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RestaurantOwnerDTO {
-    private String email, ownerName;
+    private String emailId, ownerName;
 
 }

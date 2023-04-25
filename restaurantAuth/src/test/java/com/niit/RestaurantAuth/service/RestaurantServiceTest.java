@@ -66,20 +66,20 @@ public class RestaurantServiceTest {
 
     @Test
     public void restaurantOwnerLogInSuccess() throws InvalidCredentialsException {
-        when(restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword())).thenReturn(restaurantOwner);
+        when(restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmailId(), restaurantOwner.getPassword())).thenReturn(restaurantOwner);
         assertEquals(restaurantOwner, restaurantService.restaurantOwnerLogin(restaurantOwner));
-        verify(restaurantOwnerRepo, times(1)).findByEmailIdAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword());
+        verify(restaurantOwnerRepo, times(1)).findByEmailIdAndPassword(restaurantOwner.getEmailId(), restaurantOwner.getPassword());
     }
 
     @Test
     public void restaurantOwnerLogInFailure() throws InvalidCredentialsException {
-        when(restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmail(), restaurantOwner.getPassword())).thenReturn(null);
+        when(restaurantOwnerRepo.findByEmailIdAndPassword(restaurantOwner.getEmailId(), restaurantOwner.getPassword())).thenReturn(null);
         assertThrows(InvalidCredentialsException.class, () -> restaurantService.restaurantOwnerLogin(restaurantOwner));
     }
 
     @Test
     void restaurantOwnerRegisterSuccess() throws EmailAlreadyRegistered {
-        when(restaurantOwnerRepo.findById(restaurantOwner.getEmail())).thenReturn(ofNullable(null));
+        when(restaurantOwnerRepo.findById(restaurantOwner.getEmailId())).thenReturn(ofNullable(null));
         when(ownerProxy.sendDataToService(any())).thenReturn(any());
         when(restaurantOwnerRepo.save(restaurantOwner)).thenReturn(restaurantOwner);
         doNothing().when(mailProducer).sendMailDtoToQueue(restaurantEmailDTO);
@@ -90,7 +90,7 @@ public class RestaurantServiceTest {
 
     @Test
     void restaurantOwnerRegisterFailure() {
-        when(restaurantOwnerRepo.findById(restaurantOwner.getEmail())).thenReturn(ofNullable(restaurantOwner));
+        when(restaurantOwnerRepo.findById(restaurantOwner.getEmailId())).thenReturn(ofNullable(restaurantOwner));
         assertThrows(EmailAlreadyRegistered.class, () -> restaurantService.signUpOwner(restaurantOwner));
     }
 }

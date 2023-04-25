@@ -6,4 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface DishesRepo extends MongoRepository<Dishes, String> {
 
+
 }

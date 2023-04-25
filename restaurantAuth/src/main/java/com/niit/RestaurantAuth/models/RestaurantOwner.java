@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class RestaurantOwner {
 
  @Id
- private String email;
+ private String emailId;
     private String ownerName;
  private String password;
 // private String role;

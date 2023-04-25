@@ -17,7 +17,7 @@ public class TokenGenImpl implements SecurityTokenGeneratorRestaurant {
 
         Map<String, Object> tokenData = new HashMap<>();
 
-        tokenData.put("emailId", restaurantOwner.getEmail());
+        tokenData.put("emailId", restaurantOwner.getEmailId());
         tokenData.put("password", restaurantOwner.getPassword());
 
         Map<String, String> token = new HashMap<>();

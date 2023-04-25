@@ -23,4 +23,8 @@ public interface RestaurantService {
 
     public Dishes updateDishDetails(String dishName, String type, double price);
 
+    public Dishes deleteDishes(String dishName);
+
+    public Restaurant deleteRestaurant(String restaurantName);
+
 }

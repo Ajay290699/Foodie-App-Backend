@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RestaurantOwnerRepo extends JpaRepository<RestaurantOwner, String> {
 
-    public RestaurantOwner findByEmailAndPassword(String emailId, String pwd);
+    public RestaurantOwner findByEmailIdAndPassword(String emailId, String pwd);
 
 }

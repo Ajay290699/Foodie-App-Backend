@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantImpl implements RestaurantService {
@@ -67,6 +68,28 @@ public class RestaurantImpl implements RestaurantService {
             dishes.setType(type);
             dishes.setDishPrice(price);
             return dishesRepo.save(dishes);
+        }
+        return null;
+    }
+
+    @Override
+    public Dishes deleteDishes(String dishName) {
+        Optional<Dishes> dish = dishesRepo.findById(dishName);
+        if (dish.isPresent()) {
+            Dishes dishes = dish.get();
+            dishesRepo.delete(dishes);
+            return dishes;
+        }
+        return null;
+    }
+
+    @Override
+    public Restaurant deleteRestaurant(String restaurantName) {
+        Optional<Restaurant> restaurant = restaurantRepo.findById(restaurantName);
+        if (restaurant.isPresent()) {
+            Restaurant restaurant1 = restaurant.get();
+            restaurantRepo.delete(restaurant1);
+            return restaurant1;
         }
         return null;
     }

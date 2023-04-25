@@ -71,4 +71,14 @@ public class RestaurantController {
                 dishes.getDishPrice()), HttpStatus.OK);
     }
 
+    @DeleteMapping("/dishes/{dishName}")
+    public ResponseEntity<?> deleteDishes(@PathVariable String dishName) {
+        return new ResponseEntity<>(restaurantService.deleteDishes(dishName), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/restaurant/{restaurantName}")
+    public ResponseEntity<?> deleteRestaurant(@PathVariable String restaurantName) {
+        return new ResponseEntity<>(restaurantService.deleteRestaurant(restaurantName), HttpStatus.OK);
+    }
+
 }
