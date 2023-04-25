@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document
 @Data
 @AllArgsConstructor
@@ -15,6 +17,7 @@ public class RestaurantOwner {
     @Id
     private String emailId;
     private String ownerName;
-    private Restaurant restaurant;
+    private List<Restaurant> restaurant;
+//    private Restaurant restaurant;
 
 }

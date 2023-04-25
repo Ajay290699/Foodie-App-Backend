@@ -11,15 +11,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
-@CrossOrigin
 @RequestMapping("/restaurant-service")
 @RestController
 public class RestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    //    @Autowired
+//    private OwnerRepo ownerRepo;
+//
+//    @Autowired
+//    private DishesRepo dishesRepo;
     @Autowired
     private RestaurantRepo restaurantRepo;
 //    public RestaurantController(RestaurantService restaurantService){
@@ -31,22 +34,41 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurantService.addOwner(restaurantOwner), HttpStatus.OK);
     }
 
-    @PostMapping("/add-restaurant")
-    public ResponseEntity<?> addRestaurant(@RequestBody Restaurant restaurant, HttpServletRequest httpServletRequest) {
+    @PostMapping("/add-restaurant/{restaurantOwnerId}")
+    public ResponseEntity<?> addRestaurant(@PathVariable String restaurantOwnerId, @RequestBody Restaurant restaurant) {
 
         try {
-            String emailId = (String) httpServletRequest.getAttribute("owner-emailId");
-            return new ResponseEntity<>(restaurantService.addRestaurant(restaurant), HttpStatus.OK);
+            return new ResponseEntity<>(restaurantService.addRestaurant(restaurantOwnerId, restaurant), HttpStatus.OK);
         } catch (RestaurantAlreadyExistsException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @PostMapping("/add-dish")
-    public ResponseEntity<?> addDishes(@RequestBody Dishes dish, String resturatName) {
-        //String currEmailId=(String) httpServletRequest.getAttribute("user-emailId");
-        //String ownerEmailId = (String) httpServletRequest.getAttribute("owner-emailId");
+    @PostMapping("/add-dish/{resturatName}")
+    public ResponseEntity<?> addDishes(@RequestBody Dishes dish, @PathVariable String resturatName) {
         return new ResponseEntity<>(restaurantService.addDishesToRestaurant(dish, resturatName), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllDishes")
+    public ResponseEntity<?> getAllDishes() {
+        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/getAllRestaurant")
+    public ResponseEntity<?> getAllRestaurants() {
+        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.FOUND);
+    }
+
+    @PutMapping("/updateRestaurant")
+    public ResponseEntity<?> updateRestaurantDetails(@RequestBody Restaurant restaurant) {
+        return new ResponseEntity<>(restaurantService.updateRestaurantDetails(restaurant.getRestaurantName(),
+                restaurant.getLocation()), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateDishes")
+    public ResponseEntity<?> updateDishDetails(@RequestBody Dishes dishes) {
+        return new ResponseEntity<>(restaurantService.updateDishDetails(dishes.getDishName(), dishes.getType(),
+                dishes.getDishPrice()), HttpStatus.OK);
     }
 
 }

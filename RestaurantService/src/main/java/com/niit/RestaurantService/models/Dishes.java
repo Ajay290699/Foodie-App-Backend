@@ -16,7 +16,7 @@ public class Dishes {
     @Id
     private String dishName;  //veg-pizza
     private String type;        //veg
-    private int dishPrice;      //50
+    private double dishPrice;      //50
 
 
 }
