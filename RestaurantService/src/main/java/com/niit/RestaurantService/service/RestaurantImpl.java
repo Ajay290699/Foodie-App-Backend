@@ -60,6 +60,16 @@ public class RestaurantImpl implements RestaurantService {
         }
         return null;
     }
+//    @Override
+//    public List<Restaurant> getOwnerRestaurant(String restaurantOwnerId) {
+//        Optional<RestaurantOwner> owner = ownerRepo.findById(restaurantOwnerId);
+//        if (owner.isPresent()){
+//            RestaurantOwner owner1 = owner.get();
+//            List<Restaurant> restaurant = restaurantRepo.findByOwner(owner1);
+//            return restaurant;
+//        }
+//        return null;
+//    }
 
     @Override
     public Dishes updateDishDetails(String dishName, String type, double price) {
@@ -105,5 +115,6 @@ public class RestaurantImpl implements RestaurantService {
     public RestaurantOwner addOwner(RestaurantOwner restaurantOwner) {
         return ownerRepo.save(restaurantOwner);
     }
+
 
 }

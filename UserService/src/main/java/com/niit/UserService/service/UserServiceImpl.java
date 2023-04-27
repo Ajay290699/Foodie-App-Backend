@@ -41,17 +41,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(emailId).get().getFavourites().getRestaurants();
     }
 
-//    @Override
-//    public Address getUserAddress(String emailId) {
-//        return userRepository.findById(emailId).get().getAddress();
-//    }
-
-//    @Override
-//    public Address addUserAddress(String emailId, Address address) {
-//        User user=userRepository.findById(emailId).get();
-//        user.getAddress().add(address);
-//        return userRepository.save(user).getAddress();
-//    }
 
     @Override
     public Set<String> addCuisinesToUserFavourite(String emailId, String cuisine) {
@@ -67,27 +56,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user).getFavourites().getRestaurants();
     }
 
-//    @Override
-//    public Address updateUserAddress(String emailId, String orderPlace, Address address) {
-//        User user = userRepository.findById(emailId).get();
-//        user.getAddress().setCity(address.getCity());
-//        user.getAddress().setBuildingName(address.getBuildingName());
-//        user.getAddress().setState(address.getState());
-//        user.getAddress().setFlatNo(address.getFlatNo());
-//        user.getAddress().setStreetName(address.getStreetName());
-//        user.getAddress().setPinCode(address.getPinCode());
-//        return userRepository.save(user).getAddress();
-//    }
-
-
-//    @Override
-//    public Address deleteAddressFromUser(String emailId, String buildingName) {
-//        User user=userRepository.findById(emailId).get();
-//       Address address=user.getAddress();
-//       if(address.getBuildingName().equalsIgnoreCase(buildingName){
-//       user.getAddress().remove(address);
-//       }
-//    }
 
     @Override
     public Set<String> deleteCuisineFromUserFavourite(String emailId, String cuisineName) {

@@ -15,6 +15,9 @@ public interface RestaurantService {
 
     RestaurantOwner addOwner(RestaurantOwner restaurantOwner);
 
+
+//    public List<Restaurant> getOwnerRestaurant(String restaurantOwnerId);
+
     public abstract RestaurantOwner addRestaurant(String restaurantOwnerId, Restaurant restaurant) throws RestaurantAlreadyExistsException;
 
     public abstract Restaurant addDishesToRestaurant(Dishes dishes, String resturantName);

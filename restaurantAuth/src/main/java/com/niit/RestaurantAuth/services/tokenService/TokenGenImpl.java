@@ -30,6 +30,7 @@ public class TokenGenImpl implements SecurityTokenGeneratorRestaurant {
                 .compact();
 
         token.put("token", tokenBuilder);
+        token.put("emailId", restaurantOwner.getEmailId());
         token.put("message", "login succes, token generated");
 
         return token;

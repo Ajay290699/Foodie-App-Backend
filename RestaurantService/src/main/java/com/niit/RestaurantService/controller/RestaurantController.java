@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/restaurant-service")
 @RestController
 public class RestaurantController {
@@ -33,6 +34,11 @@ public class RestaurantController {
     public ResponseEntity<?> addOwner(@RequestBody RestaurantOwner restaurantOwner) {
         return new ResponseEntity<>(restaurantService.addOwner(restaurantOwner), HttpStatus.OK);
     }
+
+//    @GetMapping("/getOwnerRestaurant/{restaurantOwnerId}")
+//    public ResponseEntity<?> getOwnerRestaurant(@PathVariable String restaurantOwnerId){
+//        return new ResponseEntity<>(restaurantService.getOwnerRestaurant(restaurantOwnerId),HttpStatus.OK);
+//    }
 
     @PostMapping("/add-restaurant/{restaurantOwnerId}")
     public ResponseEntity<?> addRestaurant(@PathVariable String restaurantOwnerId, @RequestBody Restaurant restaurant) {
@@ -71,12 +77,12 @@ public class RestaurantController {
                 dishes.getDishPrice()), HttpStatus.OK);
     }
 
-    @DeleteMapping("/dishes/{dishName}")
+    @DeleteMapping("/deleteDish/{dishName}")
     public ResponseEntity<?> deleteDishes(@PathVariable String dishName) {
         return new ResponseEntity<>(restaurantService.deleteDishes(dishName), HttpStatus.OK);
     }
 
-    @DeleteMapping("/restaurant/{restaurantName}")
+    @DeleteMapping("/deleteRestaurant/{restaurantName}")
     public ResponseEntity<?> deleteRestaurant(@PathVariable String restaurantName) {
         return new ResponseEntity<>(restaurantService.deleteRestaurant(restaurantName), HttpStatus.OK);
     }
