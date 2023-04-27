@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/restaurant-service")
 @RestController
 public class RestaurantController {
@@ -57,12 +57,12 @@ public class RestaurantController {
 
     @GetMapping("/getAllDishes")
     public ResponseEntity<?> getAllDishes() {
-        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.FOUND);
+        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.OK);
     }
 
     @GetMapping("/getAllRestaurant")
     public ResponseEntity<?> getAllRestaurants() {
-        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.FOUND);
+        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.OK);
     }
 
     @PutMapping("/updateRestaurant")

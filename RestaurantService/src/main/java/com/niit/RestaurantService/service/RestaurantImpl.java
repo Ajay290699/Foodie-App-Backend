@@ -44,7 +44,9 @@ public class RestaurantImpl implements RestaurantService {
     @Override
     public Restaurant addDishesToRestaurant(Dishes dishes, String restName) {
         Dishes dishes1 = dishesRepo.save(dishes);
+        System.out.println("Test");
         Restaurant restaurant = restaurantRepo.findById(restName).get();
+        System.out.println(restaurant);
 //        Restaurant restaurant = restaurantOwner.getRestaurant();
         restaurant.getDishesSet().add(dishes1);
         return restaurantRepo.save(restaurant);
