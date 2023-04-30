@@ -1,10 +1,6 @@
 package com.niit.UserService.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.niit.UserService.model.CartItem;
-import com.niit.UserService.model.Favourites;
-import com.niit.UserService.model.FoodItems;
-import com.niit.UserService.model.User;
 import com.niit.UserService.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

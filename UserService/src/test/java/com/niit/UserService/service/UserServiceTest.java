@@ -1,10 +1,5 @@
 package com.niit.UserService.service;
 
-import com.niit.UserService.model.CartItem;
-import com.niit.UserService.model.Favourites;
-import com.niit.UserService.model.FoodItems;
-import com.niit.UserService.model.User;
-import com.niit.UserService.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.AfterEach;

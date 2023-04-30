@@ -52,7 +52,7 @@ public class RestaurantController {
 
     @PostMapping("/add-dish/{resturatName}")
     public ResponseEntity<?> addDishes(@RequestBody Dishes dish, @PathVariable String resturatName) {
-        return new ResponseEntity<>(restaurantService.addDishesToRestaurant(dish, resturatName), HttpStatus.OK);
+        return new ResponseEntity<>(restaurantService.addDishesToRestaurant(resturatName, dish), HttpStatus.OK);
     }
 
     @GetMapping("/getAllDishes")

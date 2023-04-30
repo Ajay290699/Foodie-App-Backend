@@ -1,7 +1,5 @@
 package com.niit.UserService.service;
 
-import com.niit.UserService.model.User;
-import com.niit.UserService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

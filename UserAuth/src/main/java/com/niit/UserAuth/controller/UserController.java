@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/app/v1")
 public class UserController {

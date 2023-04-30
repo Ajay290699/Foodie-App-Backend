@@ -1,7 +1,5 @@
 package com.niit.UserService.service;
 
-import com.niit.UserService.model.User;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

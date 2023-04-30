@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
@@ -13,14 +11,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document
 public class Restaurant {
-    @Id
-    private String restaurantId;
-    private String restaurantName;
-    private String restaurantImage;
-    private List<Cuisines> dishes;
-//    private Address address;
-    private String emailId;
-    private List<Order> orders;
+
+    private String restaurantName;   //dominos
+
+    private String location;        //pune
+    private List<Dishes> dishesSet;
+//    @Id
+//    private String restaurantId;
+//    private String restaurantName;
+//    private String restaurantImage;
+//    private List<Dishes> dishes;
+//    private String emailId;
+//    private List<Order> orders;
 }

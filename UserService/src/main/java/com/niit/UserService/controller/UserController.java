@@ -1,6 +1,5 @@
 package com.niit.UserService.controller;
 
-import com.niit.UserService.model.User;
 import com.niit.UserService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/foodieApp/userService")
 public class UserController {

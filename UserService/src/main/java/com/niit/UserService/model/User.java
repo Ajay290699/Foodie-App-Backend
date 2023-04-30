@@ -11,8 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document
 public class User {
-
-
     @Id
     private String email;
     private String firstName;
@@ -20,20 +18,10 @@ public class User {
     private String mobileNo;
     private String buildingName;
     private String streetName;
-    private int flatNO;
+    private int flatNo;
     private String city;
     private String state;
     private double pincode;
-
-    //    saumya varaible's'
-//    private String emailId;
-//    private String firstName, lastName, mobileNumber;
-//    private String buildingName;
-//    private String streetName;
-//    private int flatNo;
-//    private String city;
-//    private String state;
-//    private double pincode;
-//    private Address address;
+    private CartItem cartItem;
     private Favourites favourites;
 }
