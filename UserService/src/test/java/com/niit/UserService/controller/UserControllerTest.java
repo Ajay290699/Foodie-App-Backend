@@ -1,7 +1,6 @@
 package com.niit.UserService.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.niit.UserService.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.AfterEach;

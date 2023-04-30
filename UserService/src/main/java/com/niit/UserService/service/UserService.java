@@ -1,29 +1,36 @@
 package com.niit.UserService.service;
 
+import com.niit.UserService.model.Dishes;
+import com.niit.UserService.model.Restaurant;
+import com.niit.UserService.model.User;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public interface UserService {
 
-//    public User addUser(User user);
-
     public User addUser(User user);
 
-    public List<User> getAllUser();
+//    public List<User> getAllUser();
 
     public User getUserDetails(String emailId);
 
-    public Set<String> getUserFavouriteAllCuisines(String emailId);
+    public List<Dishes> addDishesToUserFavourite(String emailId, Dishes dishes);
 
-    public Map<String, String> getUserFavouriteAllRestaurants(String emailId);
+    public List<Restaurant> addRestaurantToUserFavourite(String emailId, Restaurant restaurant);
 
-    public Set<String> addCuisinesToUserFavourite(String emailId, String cuisine);
+    public List<Dishes> addDishesToUserCart(String emailId, Dishes dishes);
 
-    public Map<String, String> addRestaurantToUserFavourite(String emailId, String restaurantName, String restaurantId);
+    public List<Dishes> getUserFavouriteAllDishes(String emailId);
 
-    public Set<String> deleteCuisineFromUserFavourite(String emailId, String cuisineName);
+    public List<Restaurant> getUserFavouriteAllRestaurants(String emailId);
 
-    public Map<String, String> deleteRestaurantFromUserFavourite(String emailId, String restaurantName);
+    public List<Dishes> getUserCartAllDishes(String emailId);
 
+    public List<Dishes> deleteDishFromUserFavourite(String emailId, Dishes dishes);
+
+    public List<Restaurant> deleteRestaurantFromUserFavourite(String emailId, Restaurant restaurant);
+
+    public List<Dishes> deleteDishFromUserCart(String emailId, Dishes dishes);
+
+    public User updateAddress(User user);
 }

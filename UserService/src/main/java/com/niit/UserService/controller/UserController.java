@@ -1,5 +1,8 @@
 package com.niit.UserService.controller;
 
+import com.niit.UserService.model.Dishes;
+import com.niit.UserService.model.Restaurant;
+import com.niit.UserService.model.User;
 import com.niit.UserService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-@CrossOrigin
+
 @RestController
 @RequestMapping("/foodieApp/userService")
 public class UserController {
@@ -20,10 +23,10 @@ public class UserController {
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.OK);
     }
 
-    @GetMapping("/getAllUser")
-    public ResponseEntity<?> getAllUser() {
-        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
-    }
+//    @GetMapping("/getAllUser")
+//    public ResponseEntity<?> getAllUser() {
+//        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
+//    }
 
     @GetMapping("/getUserDetails")
     public ResponseEntity<?> getUserDetails(HttpServletRequest request) {
@@ -31,10 +34,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserDetails(emailId), HttpStatus.OK);
     }
 
-    @GetMapping("/getUserFavouriteAllCuisines")
+    @GetMapping("/getUserFavouriteAllDishes")
     public ResponseEntity<?> getUserFavouriteAllCuisines(HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
-        return new ResponseEntity<>(userService.getUserFavouriteAllCuisines(emailId), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserFavouriteAllDishes(emailId), HttpStatus.OK);
     }
 
     @GetMapping("/getUserFavouriteAllRestaurants")
@@ -43,32 +46,54 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserFavouriteAllRestaurants(emailId), HttpStatus.OK);
     }
 
-
-    @PostMapping("/addCuisinesToUserFavourite")
-    public ResponseEntity<?> addCuisinesToUserFavourite(@RequestBody String cuisineName, HttpServletRequest request) {
+    @GetMapping("/getUserCartAllDishes")
+    public ResponseEntity<?> getUserFavouriteAllDishes(HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
-        return new ResponseEntity<>(userService.addCuisinesToUserFavourite(emailId, cuisineName), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserCartAllDishes(emailId), HttpStatus.OK);
+    }
+
+    @PostMapping("/addDishesToUserFavourite")
+    public ResponseEntity<?> addDishesToUserFavourite(@RequestBody Dishes dishes, HttpServletRequest request) {
+        String emailId = (String) request.getAttribute("emailId");
+        return new ResponseEntity<>(userService.addDishesToUserFavourite(emailId, dishes), HttpStatus.OK);
+    }
+
+    @PostMapping("/addDishesToUserCart")
+    public ResponseEntity<?> addDishesToUserCart(@RequestBody Dishes dishes, HttpServletRequest request) {
+        String emailId = (String) request.getAttribute("emailId");
+        return new ResponseEntity<>(userService.addDishesToUserCart(emailId, dishes), HttpStatus.OK);
+    }
+
+    @PostMapping("/addRestaurantToUserFavourite")
+    public ResponseEntity<?> addRestaurantToUserFavorite(@RequestBody Restaurant restaurant, HttpServletRequest request) {
+        String emailId = (String) request.getAttribute("emailId");
+        return new ResponseEntity<>(userService.addRestaurantToUserFavourite(emailId, restaurant), HttpStatus.OK);
 
     }
 
-    @PostMapping("/addRestaurantToUserFavourite/{restaurantId}")
-    public ResponseEntity<?> addRestaurantToUserWishlist(@RequestBody String restaurantName, @PathVariable String restaurantId, HttpServletRequest request) {
+    @PostMapping("/deleteDishesFromUserFavourite")
+    public ResponseEntity<?> deleteCuisineFromUserWishlist(@RequestBody Dishes dishes, HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
-        return new ResponseEntity<>(userService.addRestaurantToUserFavourite(emailId, restaurantName, restaurantId), HttpStatus.OK);
-
+        return new ResponseEntity<>(userService.deleteDishFromUserFavourite(emailId, dishes)
+                , HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteCuisineFromUserWishlist")
-    public ResponseEntity<?> deleteCuisineFromUserWishlist(@RequestBody String cuisineName, HttpServletRequest request) {
+    @PostMapping("/deleteRestaurantFromUserFavourite")
+    public ResponseEntity<?> deleteRestaurantFromUserFavourite(@RequestBody Restaurant restaurant, HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
-        userService.deleteCuisineFromUserFavourite(emailId, cuisineName);
+        userService.deleteRestaurantFromUserFavourite(emailId, restaurant);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteRestaurantFromUserWishlist")
-    public ResponseEntity<?> deleteRestaurantFromUserWishlist(@RequestBody String restaurantName, HttpServletRequest request) {
+    @PostMapping("/deleteDishesFromUserCart")
+    public ResponseEntity<?> deleteDishFromUserCart(@RequestBody Dishes dishes, HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
-        userService.deleteRestaurantFromUserFavourite(emailId, restaurantName);
+        userService.deleteDishFromUserCart(emailId, dishes);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/upadteUserAddress")
+    public ResponseEntity<?> upadteUserAddress(@RequestBody User user) {
+        return new ResponseEntity<>(userService.updateAddress(user), HttpStatus.OK);
     }
 }
