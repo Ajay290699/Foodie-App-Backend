@@ -3,9 +3,11 @@ package com.niit.UserService.service;
 import com.niit.UserService.model.Order;
 import com.niit.UserService.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired

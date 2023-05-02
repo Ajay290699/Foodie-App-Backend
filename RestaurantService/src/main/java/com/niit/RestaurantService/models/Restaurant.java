@@ -8,7 +8,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @Data
@@ -24,7 +26,15 @@ public class Restaurant {
 
     private String location;        //pune
     private List<Dishes> dishesSet;
-//    private Set<Dishes> dishesSet;  //veg,non-veg
+
+    //    private Set<Dishes> dishesSet;  //veg,non-veg
+    public void addDishes(Dishes dishes1) {
+
+        if (Objects.isNull(dishesSet)) {
+            dishesSet = new ArrayList<>();
+        }
+        dishesSet.add(dishes1);
+    }
 
 //    domino's, KFC, MCdonald's, Square pizza, darjeeling momo's,
 

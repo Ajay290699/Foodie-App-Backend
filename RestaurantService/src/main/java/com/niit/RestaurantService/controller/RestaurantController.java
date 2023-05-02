@@ -57,7 +57,7 @@ public class RestaurantController {
 
     @GetMapping("/getAllDishes")
     public ResponseEntity<?> getAllDishes() {
-        return new ResponseEntity<>(restaurantService.getAllRestaurant(), HttpStatus.OK);
+        return new ResponseEntity<>(restaurantService.getAllDishes(), HttpStatus.OK);
     }
 
     @GetMapping("/getAllRestaurant")
