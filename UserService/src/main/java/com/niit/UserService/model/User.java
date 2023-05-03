@@ -24,4 +24,5 @@ public class User {
     private double pincode;
     private CartItem cartItem;
     private Favourites favourites;
+    private String pi;
 }

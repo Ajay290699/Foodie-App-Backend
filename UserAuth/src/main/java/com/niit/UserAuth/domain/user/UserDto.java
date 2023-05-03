@@ -22,4 +22,5 @@ public class UserDto {
     private String city;
     private String state;
     private double pincode;
+    private String pi;
 }

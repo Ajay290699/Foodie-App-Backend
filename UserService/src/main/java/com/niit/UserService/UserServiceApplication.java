@@ -33,8 +33,7 @@ public class UserServiceApplication {
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteDishesFromUserFavourite");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteRestaurantFromUserFavourite");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteDishesFromUserCart");
-
-
+        filterRegistrationBean.addUrlPatterns("/foodieApp/userService/getUserDetails");
         return filterRegistrationBean;
     }
 
@@ -51,5 +50,5 @@ public class UserServiceApplication {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return bean;
     }
-
 }
+

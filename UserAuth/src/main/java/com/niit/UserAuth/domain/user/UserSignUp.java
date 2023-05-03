@@ -19,6 +19,7 @@ public class UserSignUp {
     private String buildingName, streetName, city, state;
     private int flatNo;
     private double pincode;
+    private String pi;
 //    private Image userImage;
 //    private MultipartFile Image;
 }

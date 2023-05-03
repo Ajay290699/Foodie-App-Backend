@@ -20,13 +20,12 @@ public class Favourites {
     private String email;
     private List<Dishes> dishes;
     private List<Restaurant> restaurants;
-
     public void addDishes(Dishes dishes1) {
 
         if (Objects.isNull(dishes)) {
             dishes = new ArrayList<>();
         }
-        dishes.add(dishes1);
+       dishes.add(dishes1);
     }
 
     public void addRestaurant(Restaurant restaurant1) {

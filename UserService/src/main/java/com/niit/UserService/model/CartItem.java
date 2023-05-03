@@ -16,9 +16,9 @@ import java.util.Objects;
 @Document
 public class CartItem {
 
-    List<Dishes> dishesList;
     @Id
     private String email;
+    List<Dishes> dishesList;
 
     public void addDishes(Dishes dishes1) {
 

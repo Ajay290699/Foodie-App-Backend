@@ -11,7 +11,11 @@ import com.niit.UserAuth.rabbitMQ.MailProducer;
 import com.niit.UserAuth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,20 +23,40 @@ import java.util.concurrent.ThreadLocalRandom;
 public class UserServiceImpl implements IUserService {
 
 
-
+    @Autowired
     UserRepository userRepository;
 
-
+    @Autowired
     MailProducer mailProducer;
 
 
     UserProxy userProxy;
 
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, MailProducer mailProducer, UserProxy userProxy) {
+    public UserServiceImpl(UserRepository userRepository, UserProxy userProxy) {
         this.userRepository = userRepository;
-        this.mailProducer = mailProducer;
         this.userProxy = userProxy;
+    }
+
+    @Override
+    public String uploadImage(String path, MultipartFile file) throws IOException {
+        String name = file.getOriginalFilename();
+        String filePath = path + File.separator + name;
+        File file1 = new File(path);
+        if (!file1.exists()) {
+            file1.mkdir();
+        }
+
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return name;
+    }
+
+    @Override
+    public InputStream getImage(String path, String fileName) throws FileNotFoundException {
+        String fullPath = path + File.separator + fileName;
+        InputStream inputStream = new FileInputStream(fullPath);
+        return inputStream;
     }
 
     @Override
@@ -40,10 +64,10 @@ public class UserServiceImpl implements IUserService {
         if (userRepository.findById(userSignUp.getEmail()).isEmpty()) {
             userProxy.sendDataToRestaurantService(new UserDto(userSignUp.getFirstName(), userSignUp.getLastName(), userSignUp.getEmail(),
                     userSignUp.getBuildingName(), userSignUp.getStreetName(), userSignUp.getMobileNo(), userSignUp.getFlatNo(), userSignUp.getCity(), userSignUp.getState(),
-                    userSignUp.getPincode()));
+                    userSignUp.getPincode(), userSignUp.getPi()));
             User user = userRepository.save(new User(userSignUp.getEmail(), userSignUp.getPassword()));
-            mailProducer.sendMailDtoToQueue(new EmailDTO(user.getEmail(), "You Have Successfully Registered To Foodie-App...." +
-                    " \n Thank You For Using Our Services!!!", "USER REGISTRATION SUCCESSFUL"));
+//            mailProducer.sendMailDtoToQueue(new EmailDTO(user.getEmail(), "You Have Successfully Registered To Foodie-App...." +
+//                    " \n Thank You For Using Our Services!!!", "USER REGISTRATION SUCCESSFUL"));
             return user;
         }
         throw new UserAlreadyExistException();
