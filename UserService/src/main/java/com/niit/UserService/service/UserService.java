@@ -25,10 +25,14 @@ public interface UserService {
     public List<Restaurant> getUserFavouriteAllRestaurants(String emailId);
 
     public List<Dishes> getUserCartAllDishes(String emailId);
+
     public List<Dishes> deleteDishFromUserFavourite(String emailId, Dishes dishes);
 
     public List<Restaurant> deleteRestaurantFromUserFavourite(String emailId, Restaurant restaurant);
 
     public List<Dishes> deleteDishFromUserCart(String emailId, Dishes dishes);
+
+    public List<Dishes> deleteAllCartItem(String emailId, List<Dishes> dishes);
+
     public User updateAddress(User user);
 }

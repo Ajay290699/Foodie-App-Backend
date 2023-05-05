@@ -33,6 +33,7 @@ public class UserServiceApplication {
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteDishesFromUserFavourite");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteRestaurantFromUserFavourite");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteDishesFromUserCart");
+        filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteAllDishesFromUserCart");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/getUserDetails");
         return filterRegistrationBean;
     }

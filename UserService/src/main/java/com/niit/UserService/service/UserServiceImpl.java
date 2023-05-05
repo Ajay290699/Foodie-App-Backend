@@ -136,6 +136,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Dishes> deleteAllCartItem(String emailId, List<Dishes> dishes) {
+        if (cartItemRepository.findById(emailId).isPresent()) {
+            CartItem cartItem = cartItemRepository.findById(emailId).get();
+            cartItem.getDishesList().removeAll(dishes);
+            cartItemRepository.save(cartItem);
+            return cartItemRepository.findById(emailId).get().getDishesList();
+        }
+        return null;
+    }
+
+    @Override
     public User updateAddress(User user) {
         return userRepository.save(user);
     }

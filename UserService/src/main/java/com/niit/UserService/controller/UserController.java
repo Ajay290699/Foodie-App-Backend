@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -90,6 +91,13 @@ public class UserController {
     public ResponseEntity<?> deleteDishFromUserCart(@RequestBody Dishes dishes, HttpServletRequest request) {
         String emailId = (String) request.getAttribute("emailId");
         userService.deleteDishFromUserCart(emailId, dishes);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteAllDishesFromUserCart")
+    public ResponseEntity<?> deleteDishAllDishesFromUserCart(@RequestBody List<Dishes> dishes, HttpServletRequest request) {
+        String emailId = (String) request.getAttribute("emailId");
+        userService.deleteAllCartItem(emailId, dishes);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
