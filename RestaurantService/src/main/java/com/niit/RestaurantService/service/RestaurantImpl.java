@@ -40,6 +40,11 @@ public class RestaurantImpl implements RestaurantService {
         return restaurants;
     }
 
+    RestaurantOwner getRestaurantOwnerById(String restaurantOwnerId) {
+        RestaurantOwner restaurantOwner = ownerRepo.findById(restaurantOwnerId).get();
+        return restaurantOwner;
+    }
+
 
     @Override
     public Restaurant addDishesToRestaurant(String restName, Dishes dishes) {

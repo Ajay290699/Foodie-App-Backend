@@ -10,6 +10,8 @@ import com.niit.UserAuth.rabbitMQ.EmailDTO;
 import com.niit.UserAuth.rabbitMQ.MailProducer;
 import com.niit.UserAuth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,13 +32,27 @@ public class UserServiceImpl implements IUserService {
     MailProducer mailProducer;
 
 
+    @Autowired
     UserProxy userProxy;
 
-
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserProxy userProxy) {
-        this.userRepository = userRepository;
-        this.userProxy = userProxy;
+    private JavaMailSender javaMailSender;
+
+
+//    @Autowired
+//    public UserServiceImpl(UserRepository userRepository, UserProxy userProxy) {
+//        this.userRepository = userRepository;
+//        this.userProxy = userProxy;
+//    }
+
+    public void sendMail(String receiver, String subject, String body) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("ajayc9838@gmail.com");
+        simpleMailMessage.setTo(receiver);
+        simpleMailMessage.setText(body);
+        simpleMailMessage.setSubject(subject);
+        javaMailSender.send(simpleMailMessage);
+        System.out.println("Mail sent...");
     }
 
     @Override
@@ -68,6 +84,8 @@ public class UserServiceImpl implements IUserService {
             User user = userRepository.save(new User(userSignUp.getEmail(), userSignUp.getPassword()));
 //            mailProducer.sendMailDtoToQueue(new EmailDTO(user.getEmail(), "You Have Successfully Registered To Foodie-App...." +
 //                    " \n Thank You For Using Our Services!!!", "USER REGISTRATION SUCCESSFUL"));
+            sendMail(userSignUp.getEmail(), "USER REGISTRATION SUCCESSFUL"
+                    , "Hii " + userSignUp.getFirstName() + " you have successfully registered to Foddie-App \nWlcome to Foodie-App");
             return user;
         }
         throw new UserAlreadyExistException();
