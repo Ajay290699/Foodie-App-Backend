@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Set;
+import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -32,11 +32,13 @@ public class RestaurantServiceTest {
 
     private Dishes dishes;
 
+    private List<Restaurant> restaurantList;
+
     private Restaurant restaurant;
 
     private RestaurantOwner restaurantOwner;
 
-    private Set<Dishes> dishesSet;
+    private List<Dishes> dishesSet;
 
     @BeforeEach
     void setUp() {
@@ -44,7 +46,8 @@ public class RestaurantServiceTest {
         dishes = new Dishes("pizza", "veg", 45);
         dishesSet.add(dishes);
         restaurant = new Restaurant("XYZ Hotel", "mumbai", dishesSet);
-        restaurantOwner = new RestaurantOwner("abc@gmail.com", "ABC", restaurant);
+        restaurantList.add(restaurant);
+        restaurantOwner = new RestaurantOwner("abc@gmail.com", "ABC", restaurantList);
     }
 
     @AfterEach

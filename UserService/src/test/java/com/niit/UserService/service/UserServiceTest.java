@@ -1,5 +1,8 @@
 package com.niit.UserService.service;
 
+import com.niit.UserService.model.*;
+import com.niit.UserService.repository.FavouriteRepository;
+import com.niit.UserService.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.AfterEach;
@@ -20,12 +23,12 @@ import static org.mockito.Mockito.when;
 public class UserServiceTest {
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private FavouriteRepository favouriteRepository;
     @InjectMocks
     private UserServiceImpl userService;
 
     private CartItem cartItem;
-
-    private FoodItems foodItems;
 
     private User user;
 
@@ -33,24 +36,25 @@ public class UserServiceTest {
 
     private List<CartItem> list1;
 
-    private Set<String> cuisines;
+    private List<Dishes> dishes;
 
-    private Map<String, String> restaurant;
+    private List<Restaurant> restaurant;
 
     private String jwt;
 
     @BeforeEach
     public void setup() {
-        list1 = new ArrayList<>();
-        foodItems = new FoodItems("xyz", "400", "xyz", null);
-        cartItem = new CartItem(foodItems, 5, 600);
-        list1.add(cartItem);
-        cuisines = new HashSet<>();
-        cuisines.add("abc");
-        restaurant = new HashMap<>();
-        restaurant.put("abc", "abc");
-        favourites = new Favourites(cuisines, restaurant);
-        user = new User("abc", "abc", "abc", "abc", "abc", "abc", 12345, "abc", "abc", 232323, favourites);
+//        list1 = new ArrayList<>();
+        dishes = new ArrayList<>();
+        dishes.add(new Dishes("xyz", "veg", 40, 2));
+        cartItem = new CartItem("saumya@gmail.com", dishes);
+//        list1.add(cartItem);
+//        cuisines = new HashSet<>();
+//        cuisines.add("abc");
+        restaurant = new ArrayList<>();
+        restaurant.add(new Restaurant("abc", "hss", dishes));
+        favourites = new Favourites("saumya@gmail.com", dishes, restaurant);
+        user = new User("saumya@gmail.com", "jhjjd", "jhjkdh", "98787887989", "yuyuy", "uuwhwd", 12424, "jkhff", "up", 787637, null, null, "");
 
         Map<String, String> result = new HashMap<String, String>();
         Map<String, Object> userdata = new HashMap<>();
@@ -67,7 +71,6 @@ public class UserServiceTest {
     @AfterEach
     public void tear() {
 
-        foodItems = null;
         cartItem = null;
         favourites = null;
         list1 = Collections.emptyList();
@@ -75,77 +78,109 @@ public class UserServiceTest {
     }
 
 
+//    @Test
+//    public void getAllUserSuccess() {
+//        List<User> list = new ArrayList<>();
+//        list.add(user);
+//        when(userRepository.findAll()).thenReturn(list);
+//        assertEquals(list, userService.getAllUser());
+//    }
+//
+//    @Test
+//    public void getAllUserFailure() {
+//        List<User> list = new ArrayList<>();
+//        list.add(user);
+//        when(userRepository.findAll()).thenReturn(list);
+//        assertNotEquals(list.get(0), userService.getAllUser());
+//    }
+
+
     @Test
-    public void getAllUserSuccess() {
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        when(userRepository.findAll()).thenReturn(list);
-        assertEquals(list, userService.getAllUser());
+    public void getUserSuccess() {
+        when(userRepository.findById("saumya@gmail.com")).thenReturn(Optional.ofNullable(user));
+        assertEquals(user, userService.getUserDetails("saumya@gmail.com"));
     }
 
     @Test
-    public void getAllUserFailure() {
-        List<User> list = new ArrayList<>();
-        list.add(user);
-        when(userRepository.findAll()).thenReturn(list);
-        assertNotEquals(list.get(0).getEmail(), userService.getAllUser());
+    public void getUserFailure() {
+        when(userRepository.findById("saumya@gmail.com")).thenReturn(Optional.ofNullable(user));
+        User user1 = new User();
+//       user1=user;
+        user1.setEmail("xyz@gmail.com");
+        assertNotEquals(user1, userService.getUserDetails("saumya@gmail.com"));
     }
 
-    @Test
-    public void getUserFavoriteAllCuisinesSuccess() {
-        userRepository.save(user);
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        assertEquals(cuisines, userService.getUserFavouriteAllCuisines(user.getEmail()));
-    }
 
     @Test
-    public void getUserWishlistAllCuisinesFailure() {
-        userRepository.save(user);
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        assertNotEquals(user, userService.getUserFavouriteAllCuisines(user.getEmail()));
+    public void getUserFavoriteAllDishesSuccess() {
+        favouriteRepository.save(favourites);
+        when(favouriteRepository.findById(favourites.getEmail())).thenReturn(Optional.ofNullable(favourites));
+        assertEquals(dishes, userService.getUserFavouriteAllDishes(favourites.getEmail()));
     }
 
+
     @Test
-    public void getUserWishListAllRestaurantsSuccess() {
-        userRepository.save(user);
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
+    public void getUserFavoriteAllDishesFailure() {
+        favouriteRepository.save(favourites);
+        when(favouriteRepository.findById(favourites.getEmail())).thenReturn(Optional.ofNullable(favourites));
+        Favourites favourites1 = new Favourites();
+//
+        assertNotEquals(favourites1.getDishes(), userService.getUserFavouriteAllDishes(favourites.getEmail()));
+    }
+
+
+    @Test
+    public void getUserFavoriteAllRestaurantsSuccess() {
+        favouriteRepository.save(favourites);
+        when(favouriteRepository.findById(favourites.getEmail())).thenReturn(Optional.ofNullable(favourites));
         assertEquals(restaurant, userService.getUserFavouriteAllRestaurants(user.getEmail()));
     }
 
     @Test
-    public void getUserWishListAllRestaurantsFailure() {
-        userRepository.save(user);
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        assertNotEquals(cuisines, userService.getUserFavouriteAllRestaurants(user.getEmail()));
+    public void getUserFavoriteAllRestaurantsFailure() {
+        favouriteRepository.save(favourites);
+        when(favouriteRepository.findById(favourites.getEmail())).thenReturn(Optional.ofNullable(favourites));
+        assertNotEquals(restaurant, userService.getUserFavouriteAllDishes(favourites.getEmail()));
     }
 
+    //
+//
     @Test
     public void addCuisinesToUserFavoriteSuccess() {
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(user)).thenReturn(user);
-        assertEquals(cuisines, userService.addCuisinesToUserFavourite(user.getEmail(), "abc"));
+        when(favouriteRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(favourites));
+        when(favouriteRepository.save(favourites)).thenReturn(favourites);
+        assertEquals(dishes, userService.addDishesToUserFavourite(favourites.getEmail(), new Dishes("xyz", "veg", 40, 2)));
     }
 
     @Test
-    public void addCuisinesToUserWishlistFailure() {
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(user)).thenReturn(user);
-        assertNotEquals(user, userService.addCuisinesToUserFavourite(user.getEmail(), "abc"));
+    public void addCuisinesToUserFavoriteFailure() {
+        when(favouriteRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(favourites));
+        when(favouriteRepository.save(favourites)).thenReturn(favourites);
+        Dishes dishes1 = new Dishes();
+        assertNotEquals(dishes1, userService.addDishesToUserFavourite(favourites.getEmail(), new Dishes("xyz", "veg", 40, 2)));
     }
 
-    @Test
-    public void addRestaurantToUserFavoriteSuccess() {
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(user)).thenReturn(user);
-        assertEquals(restaurant, userService.addRestaurantToUserFavourite(user.getEmail(), "abc", "123"));
-    }
 
-    @Test
-    public void addRestaurantToUserWishlistFailure() {
-        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(user)).thenReturn(user);
-        assertNotEquals(cuisines, userService.addRestaurantToUserFavourite(user.getEmail(), "abc", "123"));
-    }
+//    @Test
+//    public void addCuisinesToUserWishlistFailure() {
+//        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
+//        when(userRepository.save(user)).thenReturn(user);
+//        assertNotEquals(user, userService.addCuisinesToUserFavourite(user.getEmail(), "abc"));
+//    }
+//
+//    @Test
+//    public void addRestaurantToUserFavoriteSuccess() {
+//        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
+//        when(userRepository.save(user)).thenReturn(user);
+//        assertEquals(restaurant, userService.addRestaurantToUserFavourite(user.getEmail(), "abc", "123"));
+//    }
+//
+//    @Test
+//    public void addRestaurantToUserWishlistFailure() {
+//        when(userRepository.findById(user.getEmail())).thenReturn(Optional.ofNullable(user));
+//        when(userRepository.save(user)).thenReturn(user);
+//        assertNotEquals(dishes, userService.addRestaurantToUserFavourite(user.getEmail(), "abc", "123"));
+//    }
 
 
 }

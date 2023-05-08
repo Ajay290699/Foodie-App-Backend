@@ -15,7 +15,7 @@ public interface RestaurantService {
 
     RestaurantOwner addOwner(RestaurantOwner restaurantOwner);
 
-    RestaurantOwner owner(String restaurantOwnerId);
+//    RestaurantOwner owner(String restaurantOwnerId);
 
 
 //    public List<Restaurant> getOwnerRestaurant(String restaurantOwnerId);

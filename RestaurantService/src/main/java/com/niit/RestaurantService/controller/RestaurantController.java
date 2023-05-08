@@ -60,10 +60,10 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurantService.getAllDishes(), HttpStatus.OK);
     }
 
-    @GetMapping("/getRestaurantOwnerById/{id}")
-    public ResponseEntity<?> getOwnerById(@PathVariable String id) {
-        return new ResponseEntity<>(restaurantService.owner(id), HttpStatus.OK);
-    }
+//    @GetMapping("/getRestaurantOwnerById/{id}")
+//    public ResponseEntity<?> getOwnerById(@PathVariable String id) {
+//        return new ResponseEntity<>(restaurantService.owner(id), HttpStatus.OK);
+//    }
 
     @GetMapping("/getAllRestaurant")
     public ResponseEntity<?> getAllRestaurants() {

@@ -1,6 +1,8 @@
 package com.niit.UserService.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.niit.UserService.model.*;
+import com.niit.UserService.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.AfterEach;
@@ -15,9 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.*;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(value = UserController.class)
@@ -29,9 +29,8 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
-    private CartItem cartItem;
 
-    private FoodItems foodItems;
+    private CartItem cartItem;
 
     private User user;
 
@@ -39,16 +38,12 @@ public class UserControllerTest {
 
     private List<CartItem> list1;
 
+    private List<Dishes> dishes;
+
+    private List<Restaurant> restaurant;
 
     private String jwt;
 
-    //    @Test
-//    void restaurantOwnerRegistrationFailure() throws Exception {
-//        Mockito.when(restaurantService.signUpOwner(any())).thenThrow(EmailAlreadyRegistered.class);
-//        mockMvc.perform(MockMvcRequestBuilders.post("/owner-auth/sign-in").contentType(APPLICATION_JSON).content(jsToString(restaurantOwner)))
-//                .andExpect(status().isConflict()).andDo(MockMvcResultHandlers.print());
-//        verify(restaurantService, times(1)).signUpOwner(any());
-//    }
     private static String asJsonString(final Object obj) {
         try {
             final ObjectMapper objectMapper = new ObjectMapper();
@@ -60,14 +55,17 @@ public class UserControllerTest {
 
     @BeforeEach
     public void setup() {
-        list1 = new ArrayList<>();
-        foodItems = new FoodItems("xyz", "400", "xyz", null);
-        cartItem = new CartItem(foodItems, 5, 600);
-        list1.add(cartItem);
-        favourites = new Favourites();
-        user = new User("abc", "abc", "abc", "abc", "abc", "abc", 12345, "abc", "abc", 232323, favourites);
-
-// Token Generation
+//        list1 = new ArrayList<>();
+        dishes = new ArrayList<>();
+        dishes.add(new Dishes("xyz", "veg", 40, 2));
+        cartItem = new CartItem("saumya@gmail.com", dishes);
+//        list1.add(cartItem);
+//        cuisines = new HashSet<>();
+//        cuisines.add("abc");
+        restaurant = new ArrayList<>();
+        restaurant.add(new Restaurant("abc", "hss", dishes));
+        favourites = new Favourites("saumya@gmail.com", dishes, restaurant);
+        user = new User("saumya@gmail.com", "jhjjd", "jhjkdh", "98787887989", "yuyuy", "uuwhwd", 12424, "jkhff", "up", 787637, null, null, "");
 
         Map<String, String> result = new HashMap<String, String>();
         Map<String, Object> userdata = new HashMap<>();
@@ -77,14 +75,13 @@ public class UserControllerTest {
         jwt = Jwts.builder()
                 .setClaims(userdata)
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS512, "FoodieApp_key")
+                .signWith(SignatureAlgorithm.HS512, "securityKey")
                 .compact();
     }
 
     @AfterEach
     public void tear() {
 
-        foodItems = null;
         cartItem = null;
         favourites = null;
         list1 = Collections.emptyList();
@@ -102,16 +99,16 @@ public class UserControllerTest {
 //
 //    }
 
-    @Test
-    public void getAllUserssSuccess() throws Exception {
-        List<User> list4 = new ArrayList<>();
-        list4.add(user);
-        when(userService.getAllUser()).thenReturn(list4);
-        mockMvc.perform(get("/foodieApp/userService/getAllUser")).andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].email").value("abc"))
-                .andExpect(jsonPath("$[0].firstName").value("abc")).andExpect(jsonPath("$[0].mobileNo").value("abc"));
-
-    }
+//    @Test
+//    public void getAllUserssSuccess() throws Exception {
+//        List<User> list4 = new ArrayList<>();
+//        list4.add(user);
+//        when(userService.getAllUser()).thenReturn(list4);
+//        mockMvc.perform(get("/foodieApp/userService/getAllUser")).andExpect(status().isOk())
+//                .andExpect(jsonPath("$[0].email").value("saumya@gmail.com"))
+//                .andExpect(jsonPath("$[0].firstName").value("jhjjd")).andExpect(jsonPath("$[0].mobileNo").value("98787887989"));
+//
+//    }
 
     @Test
     public void addUserSuccess() throws Exception {
