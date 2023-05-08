@@ -34,7 +34,7 @@ public class RestaurantServiceImpl implements RestaurantAuthService {
 
     public void sendMail(String receiver, String subject, String body) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("noreply.foodieapp@gmail.com");
+        simpleMailMessage.setFrom("foodieapp64@gmail.com");
         simpleMailMessage.setTo(receiver);
         simpleMailMessage.setText(body);
         simpleMailMessage.setSubject(subject);

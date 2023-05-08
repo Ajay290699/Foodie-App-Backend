@@ -68,7 +68,7 @@ public class RestaurantControllerTest {
         result = new HashMap<>();
         result.put("token", "abcd");
         result.put("message", "Restaurant Owner Login Successfull");
-        result.put("restaurantOwner_Email", restaurantOwner.getEmail());
+        result.put("restaurantOwner_Email", restaurantOwner.getEmailId());
         mockMvc = MockMvcBuilders.standaloneSetup(restOwnerController).build();
     }
 
