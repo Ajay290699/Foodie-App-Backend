@@ -2,14 +2,22 @@ package com.niit.RestaurantService.controller;
 
 import com.niit.RestaurantService.exceptions.RestaurantAlreadyExistsException;
 import com.niit.RestaurantService.models.Dishes;
+import com.niit.RestaurantService.models.ImageModel;
 import com.niit.RestaurantService.models.Restaurant;
 import com.niit.RestaurantService.models.RestaurantOwner;
 import com.niit.RestaurantService.repos.RestaurantRepo;
 import com.niit.RestaurantService.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 
 @CrossOrigin
 @RequestMapping("/restaurant-service")
@@ -18,6 +26,8 @@ public class RestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    private final String path = "RestaurantService/src/main/resources/restaurantImage";
 
     //    @Autowired
 //    private OwnerRepo ownerRepo;
@@ -92,4 +102,28 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurantService.deleteRestaurant(restaurantName), HttpStatus.OK);
     }
 
+    @PostMapping("/upload")
+    public ResponseEntity<?> upload(@RequestParam("image") MultipartFile image) {
+
+
+        String fileName = null;
+        try {
+            fileName = this.restaurantService.uploadImage(path, image);
+        } catch (IOException e) {
+
+            throw new RuntimeException(e);
+        }
+
+        ImageModel imageModel = new ImageModel(fileName, "Image is sucessfully uploaded");
+
+        return new ResponseEntity<>(imageModel, HttpStatus.CREATED);
+
+    }
+
+    @GetMapping(value = "/images/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void servefile(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException {
+        InputStream stream = this.restaurantService.getImage(path, imageName);
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(stream, response.getOutputStream());
+    }
 }

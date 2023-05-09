@@ -17,7 +17,7 @@ public class RestaurantOwner {
  @Id
  private String emailId;
     private String ownerName;
- private String password;
+    private String password;
 // private String role;
 
 

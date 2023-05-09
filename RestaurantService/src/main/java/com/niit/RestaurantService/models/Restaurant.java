@@ -25,6 +25,7 @@ public class Restaurant {
     private String restaurantName;   //dominos
 
     private String location;        //pune
+    private String resImage;
     private List<Dishes> dishesSet;
 
     //    private Set<Dishes> dishesSet;  //veg,non-veg

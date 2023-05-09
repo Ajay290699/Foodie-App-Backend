@@ -8,7 +8,11 @@ import com.niit.RestaurantService.repos.OwnerRepo;
 import com.niit.RestaurantService.repos.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +27,26 @@ public class RestaurantImpl implements RestaurantService {
 
     @Autowired
     private DishesRepo dishesRepo;
+
+    @Override
+    public String uploadImage(String path, MultipartFile file) throws IOException {
+        String name = file.getOriginalFilename();
+        String filePath = path + File.separator + name;
+        File file1 = new File(path);
+        if (!file1.exists()) {
+            file1.mkdir();
+        }
+
+        Files.copy(file.getInputStream(), Paths.get(filePath));
+        return name;
+    }
+
+    @Override
+    public InputStream getImage(String path, String fileName) throws FileNotFoundException {
+        String fullPath = path + File.separator + fileName;
+        InputStream inputStream = new FileInputStream(fullPath);
+        return inputStream;
+    }
 
     @Override
     public RestaurantOwner addRestaurant(String restaurantOwnerId, Restaurant restaurant) {
