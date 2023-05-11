@@ -54,6 +54,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+//    public User addDishFavourite(String emailId, Dishes dishes){
+//        User user = userRepository.findById(emailId).get();
+//        if (user.getFavourites()==null){
+//            user.setFavourites(Arrays.asList(dishes));
+//        }
+//    }
+
     @Override
     public List<Restaurant> addRestaurantToUserFavourite(String emailId, Restaurant restaurant) {
         if (favouriteRepository.findById(emailId).isPresent()) {
