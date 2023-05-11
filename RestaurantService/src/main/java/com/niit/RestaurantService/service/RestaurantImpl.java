@@ -41,12 +41,22 @@ public class RestaurantImpl implements RestaurantService {
         return name;
     }
 
-    @Override
-    public InputStream getImage(String path, String fileName) throws FileNotFoundException {
-        String fullPath = path + File.separator + fileName;
-        InputStream inputStream = new FileInputStream(fullPath);
-        return inputStream;
-    }
+//    @Override
+//    public InputStream getImage(String path, String fileName) throws FileNotFoundException {
+//        String fullPath = path + File.separator + fileName;
+//        try(InputStream inputStream = new FileInputStream(fullPath)){
+//            return inputStream;
+//        }catch(Exception exception){
+//            System.out.println(exception);
+//        }
+//        return null;
+//    }
+@Override
+public InputStream getImage(String path, String fileName) throws FileNotFoundException {
+    String fullPath = path + File.separator + fileName;
+    InputStream inputStream = new FileInputStream(fullPath);
+    return inputStream;
+}
 
     @Override
     public RestaurantOwner addRestaurant(String restaurantOwnerId, Restaurant restaurant) {

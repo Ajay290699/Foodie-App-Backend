@@ -18,6 +18,7 @@ public class Dishes {
     private String dishName;  //veg-pizza
     private String type;        //veg
     private double dishPrice;      //50
+    private String dishImage;
 
 
 }

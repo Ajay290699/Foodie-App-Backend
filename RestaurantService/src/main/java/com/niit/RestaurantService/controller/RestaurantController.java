@@ -29,6 +29,8 @@ public class RestaurantController {
 
     private final String path = "RestaurantService/src/main/resources/restaurantImage";
 
+    private final String path1 = "RestaurantService/src/main/resources/dishImage";
+
     //    @Autowired
 //    private OwnerRepo ownerRepo;
 //
@@ -123,6 +125,31 @@ public class RestaurantController {
     @GetMapping(value = "/images/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
     public void servefile(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException {
         InputStream stream = this.restaurantService.getImage(path, imageName);
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(stream, response.getOutputStream());
+    }
+
+    @PostMapping("/dishUpload")
+    public ResponseEntity<?> dishUpload(@RequestParam("image") MultipartFile image) {
+
+
+        String fileName = null;
+        try {
+            fileName = this.restaurantService.uploadImage(path1, image);
+        } catch (IOException e) {
+
+            throw new RuntimeException(e);
+        }
+
+        ImageModel imageModel = new ImageModel(fileName, "Image is sucessfully uploaded");
+
+        return new ResponseEntity<>(imageModel, HttpStatus.CREATED);
+
+    }
+
+    @GetMapping(value = "/dishImages/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void dishservefile(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException {
+        InputStream stream = this.restaurantService.getImage(path1, imageName);
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(stream, response.getOutputStream());
     }
