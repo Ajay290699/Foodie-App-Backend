@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<Dishes> addDishesToUserFavourite(String emailId, Dishes dishes) {
+    public Set<Dishes> addDishesToUserFavourite(String emailId, Dishes dishes) {
         if (favouriteRepository.findById(emailId).isPresent()) {
             Favourites favourites = favouriteRepository.findById(emailId).get();
             favourites.addDishes(dishes);
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public List<Restaurant> addRestaurantToUserFavourite(String emailId, Restaurant restaurant) {
+    public Set<Restaurant> addRestaurantToUserFavourite(String emailId, Restaurant restaurant) {
         if (favouriteRepository.findById(emailId).isPresent()) {
             Favourites favourites = favouriteRepository.findById(emailId).get();
             favourites.addRestaurant(restaurant);
@@ -95,12 +96,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Dishes> getUserFavouriteAllDishes(String emailId) {
+    public Set<Dishes> getUserFavouriteAllDishes(String emailId) {
         return favouriteRepository.findById(emailId).get().getDishes();
     }
 
     @Override
-    public List<Restaurant> getUserFavouriteAllRestaurants(String emailId) {
+    public Set<Restaurant> getUserFavouriteAllRestaurants(String emailId) {
         return favouriteRepository.findById(emailId).get().getRestaurants();
     }
 
@@ -109,7 +110,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Dishes> deleteDishFromUserFavourite(String emailId, Dishes dishes) {
+    public Set<Dishes> deleteDishFromUserFavourite(String emailId, Dishes dishes) {
         if (favouriteRepository.findById(emailId).isPresent()) {
             Favourites favourites = favouriteRepository.findById(emailId).get();
             favourites.getDishes().remove(dishes);
@@ -120,7 +121,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Restaurant> deleteRestaurantFromUserFavourite(String emailId, Restaurant restaurant) {
+    public Set<Restaurant> deleteRestaurantFromUserFavourite(String emailId, Restaurant restaurant) {
         if (favouriteRepository.findById(emailId).isPresent()) {
             Favourites favourites = favouriteRepository.findById(emailId).get();
             favourites.getRestaurants().remove(restaurant);

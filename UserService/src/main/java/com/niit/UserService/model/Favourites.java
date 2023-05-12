@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -18,20 +18,21 @@ public class Favourites {
 
     @Id
     private String email;
-    private List<Dishes> dishes;
-    private List<Restaurant> restaurants;
+    private Set<Dishes> dishes;
+    private Set<Restaurant> restaurants;
+
     public void addDishes(Dishes dishes1) {
 
         if (Objects.isNull(dishes)) {
-            dishes = new ArrayList<>();
+            dishes = new HashSet<>();
         }
-       dishes.add(dishes1);
+        dishes.add(dishes1);
     }
 
     public void addRestaurant(Restaurant restaurant1) {
 
         if (Objects.isNull(restaurants)) {
-            restaurants = new ArrayList<>();
+            restaurants = new HashSet<>();
         }
         restaurants.add(restaurant1);
     }

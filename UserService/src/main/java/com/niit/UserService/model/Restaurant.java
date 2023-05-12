@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class Restaurant {
     private String restaurantName;   //dominos
 
     private String location;        //pune
-    private List<Dishes> dishesSet;
+    private Set<Dishes> dishesSet;
 //    @Id
 //    private String restaurantId;
 //    private String restaurantName;
