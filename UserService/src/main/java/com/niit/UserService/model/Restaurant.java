@@ -16,6 +16,7 @@ public class Restaurant {
     private String restaurantName;   //dominos
 
     private String location;        //pune
+    private String resImage;
     private Set<Dishes> dishesSet;
 //    @Id
 //    private String restaurantId;

@@ -11,5 +11,7 @@ public class Dishes {
     private String dishName;  //veg-pizza
     private String type;        //veg
     private int dishPrice;
+    private String dishImage;
     private int quantity;
+
 }
