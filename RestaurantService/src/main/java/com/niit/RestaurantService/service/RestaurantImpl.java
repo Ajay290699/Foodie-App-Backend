@@ -41,17 +41,8 @@ public class RestaurantImpl implements RestaurantService {
         return name;
     }
 
-//    @Override
-//    public InputStream getImage(String path, String fileName) throws FileNotFoundException {
-//        String fullPath = path + File.separator + fileName;
-//        try(InputStream inputStream = new FileInputStream(fullPath)){
-//            return inputStream;
-//        }catch(Exception exception){
-//            System.out.println(exception);
-//        }
-//        return null;
-//    }
-@Override
+
+    @Override
 public InputStream getImage(String path, String fileName) throws FileNotFoundException {
     String fullPath = path + File.separator + fileName;
     InputStream inputStream = new FileInputStream(fullPath);
@@ -84,19 +75,10 @@ public InputStream getImage(String path, String fileName) throws FileNotFoundExc
     public Restaurant addDishesToRestaurant(String restName, Dishes dishes) {
         Restaurant restaurant = restaurantRepo.findById(restName).get();
         Dishes dishes1 = dishesRepo.save(dishes);
-//        System.out.println(restaurant);
-//        Restaurant restaurant = restaurantOwner.getRestaurant();
         restaurant.addDishes(dishes);
-//        restaurant.getDishesSet().add(dishes1);
         return restaurantRepo.save(restaurant);
     }
 
-//    public Dishes addDishes(Dishes dish,String restName){
-//        Dishes dishes = dishesRepo.save(dish);
-//        if (restaurantRepo.findById(restName).isPresent()){
-//            Restaurant restaurant = restaurantRepo.save(dishes)
-//        }
-//    }
 
     @Override
     public Restaurant updateRestaurantDetails(String restaurantName, String location) {
@@ -108,16 +90,7 @@ public InputStream getImage(String path, String fileName) throws FileNotFoundExc
         }
         return null;
     }
-//    @Override
-//    public List<Restaurant> getOwnerRestaurant(String restaurantOwnerId) {
-//        Optional<RestaurantOwner> owner = ownerRepo.findById(restaurantOwnerId);
-//        if (owner.isPresent()){
-//            RestaurantOwner owner1 = owner.get();
-//            List<Restaurant> restaurant = restaurantRepo.findByOwner(owner1);
-//            return restaurant;
-//        }
-//        return null;
-//    }
+
 
     @Override
     public Dishes updateDishDetails(String dishName, String type, double price) {

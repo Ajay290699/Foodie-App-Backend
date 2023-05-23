@@ -15,9 +15,9 @@ public class Dishes {
 
 
     @Id
-    private String dishName;  //veg-pizza
-    private String type;        //veg
-    private double dishPrice;      //50
+    private String dishName;
+    private String type;
+    private double dishPrice;
     private String dishImage;
 
 

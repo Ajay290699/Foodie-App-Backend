@@ -19,8 +19,6 @@ import java.util.Objects;
 @Setter
 public class Restaurant {
 
-
-    //    private String restaurantId;
     @Id
     private String restaurantName;   //dominos
 
@@ -28,7 +26,6 @@ public class Restaurant {
     private String resImage;
     private List<Dishes> dishesSet;
 
-    //    private Set<Dishes> dishesSet;  //veg,non-veg
     public void addDishes(Dishes dishes1) {
 
         if (Objects.isNull(dishesSet)) {
@@ -37,6 +34,5 @@ public class Restaurant {
         dishesSet.add(dishes1);
     }
 
-//    domino's, KFC, MCdonald's, Square pizza, darjeeling momo's,
 
 }

@@ -18,6 +18,5 @@ public class RestaurantOwner {
     private String emailId;
     private String ownerName;
     private List<Restaurant> restaurant;
-//    private Restaurant restaurant;
 
 }

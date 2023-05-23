@@ -31,26 +31,13 @@ public class RestaurantController {
 
     private final String path1 = "RestaurantService/src/main/resources/dishImage";
 
-    //    @Autowired
-//    private OwnerRepo ownerRepo;
-//
-//    @Autowired
-//    private DishesRepo dishesRepo;
     @Autowired
     private RestaurantRepo restaurantRepo;
-//    public RestaurantController(RestaurantService restaurantService){
-//        this.restaurantService=restaurantService;
-//    }
 
     @PostMapping("/add-owner")
     public ResponseEntity<?> addOwner(@RequestBody RestaurantOwner restaurantOwner) {
         return new ResponseEntity<>(restaurantService.addOwner(restaurantOwner), HttpStatus.OK);
     }
-
-//    @GetMapping("/getOwnerRestaurant/{restaurantOwnerId}")
-//    public ResponseEntity<?> getOwnerRestaurant(@PathVariable String restaurantOwnerId){
-//        return new ResponseEntity<>(restaurantService.getOwnerRestaurant(restaurantOwnerId),HttpStatus.OK);
-//    }
 
     @PostMapping("/add-restaurant/{restaurantOwnerId}")
     public ResponseEntity<?> addRestaurant(@PathVariable String restaurantOwnerId, @RequestBody Restaurant restaurant) {
@@ -72,10 +59,6 @@ public class RestaurantController {
         return new ResponseEntity<>(restaurantService.getAllDishes(), HttpStatus.OK);
     }
 
-//    @GetMapping("/getRestaurantOwnerById/{id}")
-//    public ResponseEntity<?> getOwnerById(@PathVariable String id) {
-//        return new ResponseEntity<>(restaurantService.owner(id), HttpStatus.OK);
-//    }
 
     @GetMapping("/getAllRestaurant")
     public ResponseEntity<?> getAllRestaurants() {

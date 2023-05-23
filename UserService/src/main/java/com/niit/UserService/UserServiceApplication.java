@@ -35,6 +35,7 @@ public class UserServiceApplication {
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteDishesFromUserCart");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/deleteAllDishesFromUserCart");
         filterRegistrationBean.addUrlPatterns("/foodieApp/userService/getUserDetails");
+        filterRegistrationBean.addUrlPatterns("/foodieApp/userService/updateQuantity");
         return filterRegistrationBean;
     }
 

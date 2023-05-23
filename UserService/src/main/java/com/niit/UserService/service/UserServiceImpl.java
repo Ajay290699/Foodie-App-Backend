@@ -159,5 +159,20 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public List<Dishes> updateQuantity(Dishes dishes, String emailId) {
+        CartItem cartItem = cartItemRepository.findById(emailId).get();
+        if (cartItemRepository.findById(emailId).isPresent()) {
+            for (int i = 0; i < cartItem.getDishesList().size(); i++) {
+                if (cartItem.getDishesList().get(i).getDishName().equals(dishes.getDishName())) {
+                    cartItem.getDishesList().get(i).setQuantity(dishes.getQuantity());
+                }
+            }
+
+        }
+        cartItemRepository.save(cartItem);
+        return cartItem.getDishesList();
+    }
+
 
 }

@@ -105,4 +105,10 @@ public class UserController {
     public ResponseEntity<?> upadteUserAddress(@RequestBody User user) {
         return new ResponseEntity<>(userService.updateAddress(user), HttpStatus.OK);
     }
+
+    @PostMapping("/updateQuantity")
+    public ResponseEntity<?> updateQuantity(@RequestBody Dishes dishes, HttpServletRequest request) {
+        String emailId = (String) request.getAttribute("emailId");
+        return new ResponseEntity<>(userService.updateQuantity(dishes, emailId), HttpStatus.OK);
+    }
 }

@@ -31,6 +31,9 @@ public interface UserService {
 
     public Set<Restaurant> deleteRestaurantFromUserFavourite(String emailId, Restaurant restaurant);
 
+    public List<Dishes> updateQuantity(Dishes dishes, String emailId);
+
+
     public List<Dishes> deleteDishFromUserCart(String emailId, Dishes dishes);
 
     public List<Dishes> deleteAllCartItem(String emailId, List<Dishes> dishes);
